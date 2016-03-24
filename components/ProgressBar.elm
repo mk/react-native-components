@@ -1,7 +1,5 @@
 module ProgressBar where
-  
-
-progress : Float -> Property
+  progress : Float -> Property
 progress val =
   JsonProperty "progress" (Json.Encode.float val)
 

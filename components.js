@@ -4,6 +4,8 @@
   var reactDocs = require('react-docgen');
   var fs = require("fs");
   var ejs = require("ejs");
+  var _ = require("lodash");
+
   var prefix = "node_modules/react-native/Libraries/Components/";
 
   var ElmTransformer = {
@@ -77,6 +79,7 @@
           );
         }
       });
+      elmModuleContent = _.compact(elmModuleContent);
       var elmComponent = ElmTransformer.module(
         componentName,
         elmModuleContent.join("\n\n")

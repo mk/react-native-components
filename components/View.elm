@@ -7,49 +7,9 @@ accessibilityLabel : String -> Property
 accessibilityLabel val =
   JsonProperty "accessibilityLabel" (Json.Encode.string val)
 
-
-
-
-
-
-
-
-
-
-
-
-
 testID : String -> Property
 testID val =
   JsonProperty "testID" (Json.Encode.string val)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 removeClippedSubviews : Bool -> Property
 removeClippedSubviews val =
