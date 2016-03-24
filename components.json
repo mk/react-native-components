@@ -1,0 +1,2080 @@
+{
+  "ActivityIndicator": {
+    "description": "",
+    "props": {
+      "animating": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether to show the indicator (true, the default) or hide it (false).",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "color": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The foreground color of the spinner (default is gray).",
+        "defaultValue": {
+          "value": "'#999999'",
+          "computed": false
+        }
+      },
+      "hidesWhenStopped": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the indicator should hide when not animating (true by default).",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'small'",
+              "computed": false
+            },
+            {
+              "value": "'large'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Size of the indicator. Small has a height of 20, large has a height of 36.",
+        "defaultValue": {
+          "value": "'small'",
+          "computed": false
+        }
+      },
+      "onLayout": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Invoked on mount and layout changes with\n\n  {nativeEvent: { layout: {x, y, width, height}}}."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "DrawerLayout": {
+    "description": "React component that wraps the platform `DrawerLayout` (Android only). The\nDrawer (typically used for navigation) is rendered with `renderNavigationView`\nand direct children are the main view (where your content goes). The navigation\nview is initially not visible on the screen, but can be pulled in from the\nside of the window specified by the `drawerPosition` prop and its width can\nbe set by the `drawerWidth` prop.\n\nExample:\n\n```\nrender: function() {\n  var navigationView = (\n    <View style={{flex: 1, backgroundColor: '#fff'}}>\n      <Text style={{margin: 10, fontSize: 15, textAlign: 'left'}}>I'm in the Drawer!</Text>\n    </View>\n  );\n  return (\n    <DrawerLayoutAndroid\n      drawerWidth={300}\n      drawerPosition={DrawerLayoutAndroid.positions.Left}\n      renderNavigationView={() => navigationView}>\n      <View style={{flex: 1, alignItems: 'center'}}>\n        <Text style={{margin: 10, fontSize: 15, textAlign: 'right'}}>Hello</Text>\n        <Text style={{margin: 10, fontSize: 15, textAlign: 'right'}}>World!</Text>\n      </View>\n    </DrawerLayoutAndroid>\n  );\n},\n```",
+    "props": {
+      "keyboardDismissMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'none'",
+              "computed": false
+            },
+            {
+              "value": "\"on-drag\"",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Determines whether the keyboard gets dismissed in response to a drag.\n  - 'none' (the default), drags do not dismiss the keyboard.\n  - 'on-drag', the keyboard is dismissed when a drag begins."
+      },
+      "drawerPosition": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "DrawerConsts.DrawerPosition.Left",
+              "computed": true
+            },
+            {
+              "value": "DrawerConsts.DrawerPosition.Right",
+              "computed": true
+            }
+          ]
+        },
+        "required": false,
+        "description": "Specifies the side of the screen from which the drawer will slide in."
+      },
+      "drawerWidth": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Specifies the width of the drawer, more precisely the width of the view that be pulled in\nfrom the edge of the window."
+      },
+      "drawerLockMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'unlocked'",
+              "computed": false
+            },
+            {
+              "value": "'locked-closed'",
+              "computed": false
+            },
+            {
+              "value": "'locked-open'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Specifies the lock mode of the drawer. The drawer can be locked in 3 states:\n- unlocked (default), meaning that the drawer will respond (open/close) to touch gestures.\n- locked closed, meaning that the drawer will stay closed and not respond to gestures.\n- locked open, meaning that the drawer will stay opened and not respond to gestures.\nThe drawer may still be opened and closed programmatically (`openDrawer`/`closeDrawer`)."
+      },
+      "onDrawerSlide": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Function called whenever there is an interaction with the navigation view."
+      },
+      "onDrawerStateChanged": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Function called when the drawer state has changed. The drawer can be in 3 states:\n- idle, meaning there is no interaction with the navigation view happening at the time\n- dragging, meaning there is currently an interaction with the navigation view\n- settling, meaning that there was an interaction with the navigation view, and the\nnavigation view is now finishing it's closing or opening animation"
+      },
+      "onDrawerOpen": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Function called whenever the navigation view has been opened."
+      },
+      "onDrawerClose": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Function called whenever the navigation view has been closed."
+      },
+      "renderNavigationView": {
+        "type": {
+          "name": "func"
+        },
+        "required": true,
+        "description": "The navigation view that will be rendered to the side of the screen and can be pulled in."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "MapView.js": {
+    "description": "",
+    "props": {
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "View.propTypes.style"
+        },
+        "required": false,
+        "description": "Used to style and layout the `MapView`.  See `StyleSheet.js` and\n`ViewStylePropTypes.js` for more info."
+      },
+      "showsUserLocation": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If `true` the app will ask for the user's location and display it on\nthe map. Default value is `false`.\n\n**NOTE**: on iOS, you need to add the `NSLocationWhenInUseUsageDescription`\nkey in Info.plist to enable geolocation, otherwise it will fail silently."
+      },
+      "followUserLocation": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If `true` the map will follow the user's location whenever it changes.\nNote that this has no effect unless `showsUserLocation` is enabled.\nDefault value is `true`.\n@platform ios"
+      },
+      "showsPointsOfInterest": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If `false` points of interest won't be displayed on the map.\nDefault value is `true`.\n@platform ios"
+      },
+      "showsCompass": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If `false` compass won't be displayed on the map.\nDefault value is `true`.\n@platform ios"
+      },
+      "zoomEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If `false` the user won't be able to pinch/zoom the map.\nDefault value is `true`."
+      },
+      "rotateEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When this property is set to `true` and a valid camera is associated with\nthe map, the camera’s heading angle is used to rotate the plane of the\nmap around its center point. When this property is set to `false`, the\ncamera’s heading angle is ignored and the map is always oriented so\nthat true north is situated at the top of the map view"
+      },
+      "pitchEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When this property is set to `true` and a valid camera is associated\nwith the map, the camera’s pitch angle is used to tilt the plane\nof the map. When this property is set to `false`, the camera’s pitch\nangle is ignored and the map is always displayed as if the user\nis looking straight down onto it."
+      },
+      "scrollEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If `false` the user won't be able to change the map region being displayed.\nDefault value is `true`."
+      },
+      "mapType": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'standard'",
+              "computed": false
+            },
+            {
+              "value": "'satellite'",
+              "computed": false
+            },
+            {
+              "value": "'hybrid'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "The map type to be displayed.\n\n- standard: standard road map (default)\n- satellite: satellite view\n- hybrid: satellite view with roads and points of interest overlaid\n\n@platform ios"
+      },
+      "region": {
+        "type": {
+          "name": "shape",
+          "value": {
+            "latitude": {
+              "name": "number",
+              "description": "Coordinates for the center of the map.",
+              "required": true
+            },
+            "longitude": {
+              "name": "number",
+              "required": true
+            },
+            "latitudeDelta": {
+              "name": "number",
+              "description": "Distance between the minimum and the maximum latitude/longitude\nto be displayed.",
+              "required": false
+            },
+            "longitudeDelta": {
+              "name": "number",
+              "required": false
+            }
+          }
+        },
+        "required": false,
+        "description": "The region to be displayed by the map.\n\nThe region is defined by the center coordinates and the span of\ncoordinates to display."
+      },
+      "annotations": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "latitude": {
+                "name": "number",
+                "description": "The location of the annotation.",
+                "required": true
+              },
+              "longitude": {
+                "name": "number",
+                "required": true
+              },
+              "animateDrop": {
+                "name": "bool",
+                "description": "Whether the pin drop should be animated or not",
+                "required": false
+              },
+              "draggable": {
+                "name": "bool",
+                "description": "Whether the pin should be draggable or not",
+                "required": false
+              },
+              "onDragStateChange": {
+                "name": "func",
+                "description": "Event that fires when the annotation drag state changes.",
+                "required": false
+              },
+              "onFocus": {
+                "name": "func",
+                "description": "Event that fires when the annotation gets was tapped by the user\nand the callout view was displayed.",
+                "required": false
+              },
+              "onBlur": {
+                "name": "func",
+                "description": "Event that fires when another annotation or the mapview itself\nwas tapped and a previously shown annotation will be closed.",
+                "required": false
+              },
+              "title": {
+                "name": "string",
+                "description": "Annotation title/subtile.",
+                "required": false
+              },
+              "subtitle": {
+                "name": "string",
+                "required": false
+              },
+              "leftCalloutView": {
+                "name": "element",
+                "description": "Callout views.",
+                "required": false
+              },
+              "rightCalloutView": {
+                "name": "element",
+                "required": false
+              },
+              "detailCalloutView": {
+                "name": "element",
+                "required": false
+              },
+              "tintColor": {
+                "name": "custom",
+                "raw": "ColorPropType",
+                "description": "The pin color. This can be any valid color string, or you can use one\nof the predefined PinColors constants. Applies to both standard pins\nand custom pin images.\n\nNote that on iOS 8 and earlier, only the standard PinColor constants\nare supported for regular pins. For custom pin images, any tintColor\nvalue is supported on all iOS versions.",
+                "required": false
+              },
+              "image": {
+                "name": "custom",
+                "raw": "Image.propTypes.source",
+                "description": "Custom pin image. This must be a static image resource inside the app.",
+                "required": false
+              },
+              "view": {
+                "name": "element",
+                "description": "Custom pin view. If set, this replaces the pin or custom pin image.",
+                "required": false
+              },
+              "id": {
+                "name": "string",
+                "description": "annotation id",
+                "required": false
+              },
+              "hasLeftCallout": {
+                "name": "custom",
+                "raw": "deprecatedPropType(\n  React.PropTypes.bool,\n  'Use `leftCalloutView` instead.'\n)",
+                "description": "Deprecated. Use the left/right/detailsCalloutView props instead.",
+                "required": false
+              },
+              "hasRightCallout": {
+                "name": "custom",
+                "raw": "deprecatedPropType(\n  React.PropTypes.bool,\n  'Use `rightCalloutView` instead.'\n)",
+                "required": false
+              },
+              "onLeftCalloutPress": {
+                "name": "custom",
+                "raw": "deprecatedPropType(\n  React.PropTypes.func,\n  'Use `leftCalloutView` instead.'\n)",
+                "required": false
+              },
+              "onRightCalloutPress": {
+                "name": "custom",
+                "raw": "deprecatedPropType(\n  React.PropTypes.func,\n  'Use `rightCalloutView` instead.'\n)",
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": "Map annotations with title/subtitle.\n@platform ios"
+      },
+      "overlays": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "coordinates": {
+                "name": "arrayOf",
+                "value": {
+                  "name": "shape",
+                  "value": {
+                    "latitude": {
+                      "name": "number",
+                      "required": true
+                    },
+                    "longitude": {
+                      "name": "number",
+                      "required": true
+                    }
+                  }
+                },
+                "description": "Polyline coordinates",
+                "required": false
+              },
+              "lineWidth": {
+                "name": "number",
+                "description": "Line attributes",
+                "required": false
+              },
+              "strokeColor": {
+                "name": "custom",
+                "raw": "ColorPropType",
+                "required": false
+              },
+              "fillColor": {
+                "name": "custom",
+                "raw": "ColorPropType",
+                "required": false
+              },
+              "id": {
+                "name": "string",
+                "description": "Overlay id",
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": "Map overlays\n@platform ios"
+      },
+      "maxDelta": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Maximum size of area that can be displayed.\n@platform ios"
+      },
+      "minDelta": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Minimum size of area that can be displayed.\n@platform ios"
+      },
+      "legalLabelInsets": {
+        "type": {
+          "name": "custom",
+          "raw": "EdgeInsetsPropType"
+        },
+        "required": false,
+        "description": "Insets for the map's legal label, originally at bottom left of the map.\nSee `EdgeInsetsPropType.js` for more information.\n@platform ios"
+      },
+      "onRegionChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called continuously when the user is dragging the map."
+      },
+      "onRegionChangeComplete": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called once, when the user is done moving the map."
+      },
+      "onAnnotationPress": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Deprecated. Use annotation onFocus and onBlur instead."
+      },
+      "active": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "@platform android"
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "Picker.js": {
+    "description": "Renders the native picker component on iOS and Android. Example:\n\n    <Picker\n      selectedValue={this.state.language}\n      onValueChange={(lang) => this.setState({language: lang})}>\n      <Picker.Item label=\"Java\" value=\"java\" />\n      <Picker.Item label=\"JavaScript\" value=\"js\" />\n    </Picker>",
+    "props": {
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "pickerStyleType"
+        },
+        "required": false,
+        "description": ""
+      },
+      "selectedValue": {
+        "type": {
+          "name": "any"
+        },
+        "required": false,
+        "description": "Value matching value of one of the items. Can be a string or an integer."
+      },
+      "onValueChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback for when an item is selected. This is called with the following parameters:\n  - `itemValue`: the `value` prop of the item that was selected\n  - `itemPosition`: the index of the selected item in this picker"
+      },
+      "enabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If set to false, the picker will be disabled, i.e. the user will not be able to make a\nselection.\n@platform android"
+      },
+      "mode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'dialog'",
+              "computed": false
+            },
+            {
+              "value": "'dropdown'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "On Android, specifies how to display the selection items when the user taps on the picker:\n\n  - 'dialog': Show a modal dialog. This is the default.\n  - 'dropdown': Shows a dropdown anchored to the picker view\n\n@platform android",
+        "defaultValue": {
+          "value": "'dialog'",
+          "computed": false
+        }
+      },
+      "itemStyle": {
+        "type": {
+          "name": "custom",
+          "raw": "itemStylePropType"
+        },
+        "required": false,
+        "description": "Style to apply to each of the item labels.\n@platform ios"
+      },
+      "prompt": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Prompt string for this picker, used on Android in dialog mode as the title of the dialog.\n@platform android"
+      },
+      "testID": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Used to locate this view in end-to-end tests."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "ProgressBar": {
+    "description": "React component that wraps the Android-only `ProgressBar`. This component is used to indicate\nthat the app is loading or there is some activity in the app.\n\nExample:\n\n```\nrender: function() {\n  var progressBar =\n    <View style={styles.container}>\n      <ProgressBar styleAttr=\"Inverse\" />\n    </View>;\n\n  return (\n    <MyLoadingComponent\n      componentView={componentView}\n      loadingView={progressBar}\n      style={styles.loadingComponent}\n    />\n  );\n},\n```",
+    "props": {
+      "styleAttr": {
+        "type": {
+          "name": "enum",
+          "computed": true,
+          "value": "STYLE_ATTRIBUTES"
+        },
+        "required": false,
+        "description": "Style of the ProgressBar. One of:\n\n- Horizontal\n- Normal (default)\n- Small\n- Large\n- Inverse\n- SmallInverse\n- LargeInverse",
+        "defaultValue": {
+          "value": "'Normal'",
+          "computed": false
+        }
+      },
+      "indeterminate": {
+        "type": {
+          "name": "custom",
+          "raw": "indeterminateType"
+        },
+        "required": false,
+        "description": "If the progress bar will show indeterminate progress. Note that this\ncan only be false if styleAttr is Horizontal.",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "progress": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The progress value (between 0 and 1)."
+      },
+      "color": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Color of the progress bar."
+      },
+      "testID": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Used to locate this view in end-to-end tests."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "ProgressView": {
+    "description": "Use `ProgressViewIOS` to render a UIProgressView on iOS.",
+    "props": {
+      "progressViewStyle": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'bar'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "The progress bar style."
+      },
+      "progress": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The progress value (between 0 and 1)."
+      },
+      "progressTintColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The tint color of the progress bar itself."
+      },
+      "trackTintColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The tint color of the progress bar track."
+      },
+      "progressImage": {
+        "type": {
+          "name": "custom",
+          "raw": "Image.propTypes.source"
+        },
+        "required": false,
+        "description": "A stretchable image to display as the progress bar."
+      },
+      "trackImage": {
+        "type": {
+          "name": "custom",
+          "raw": "Image.propTypes.source"
+        },
+        "required": false,
+        "description": "A stretchable image to display behind the progress bar."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "RefreshControl.js": {
+    "description": "This component is used inside a ScrollView to add pull to refresh\nfunctionality. When the ScrollView is at `scrollY: 0`, swiping down\ntriggers an `onRefresh` event.",
+    "props": {
+      "onRefresh": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Called when the view starts refreshing."
+      },
+      "refreshing": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the view should be indicating an active refresh."
+      },
+      "tintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "The color of the refresh indicator.\n@platform ios"
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The title displayed under the refresh indicator.\n@platform ios"
+      },
+      "enabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Whether the pull to refresh functionality is enabled.\n@platform android"
+      },
+      "colors": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "custom",
+            "raw": "ColorPropType"
+          }
+        },
+        "required": false,
+        "description": "The colors (at least one) that will be used to draw the refresh indicator.\n@platform android"
+      },
+      "progressBackgroundColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "The background color of the refresh indicator.\n@platform android"
+      },
+      "size": {
+        "type": {
+          "name": "enum",
+          "computed": true,
+          "value": "RefreshLayoutConsts.SIZE.DEFAULT"
+        },
+        "required": false,
+        "description": "Size of the refresh indicator, see RefreshControl.SIZE.\n@platform android"
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "ScrollView.js": {
+    "description": "Component that wraps platform ScrollView while providing\nintegration with touch locking \"responder\" system.\n\nKeep in mind that ScrollViews must have a bounded height in order to work,\nsince they contain unbounded-height children into a bounded container (via\na scroll interaction). In order to bound the height of a ScrollView, either\nset the height of the view directly (discouraged) or make sure all parent\nviews have bounded height. Forgetting to transfer `{flex: 1}` down the\nview stack can lead to errors here, which the element inspector makes\neasy to debug.\n\nDoesn't yet support other contained responders from blocking this scroll\nview from becoming the responder.",
+    "props": {
+      "automaticallyAdjustContentInsets": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Controls whether iOS should automatically adjust the content inset\nfor scroll views that are placed behind a navigation bar or\ntab bar/ toolbar. The default value is true.\n@platform ios"
+      },
+      "contentInset": {
+        "type": {
+          "name": "custom",
+          "raw": "EdgeInsetsPropType"
+        },
+        "required": false,
+        "description": "The amount by which the scroll view content is inset from the edges\nof the scroll view. Defaults to `{0, 0, 0, 0}`.\n@platform ios"
+      },
+      "contentOffset": {
+        "type": {
+          "name": "custom",
+          "raw": "PointPropType"
+        },
+        "required": false,
+        "description": "Used to manually set the starting scroll offset.\nThe default value is `{x: 0, y: 0}`.\n@platform ios"
+      },
+      "bounces": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view bounces when it reaches the end of the\ncontent if the content is larger then the scroll view along the axis of\nthe scroll direction. When false, it disables all bouncing even if\nthe `alwaysBounce*` props are true. The default value is true.\n@platform ios"
+      },
+      "bouncesZoom": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, gestures can drive zoom past min/max and the zoom will animate\nto the min/max value at gesture end, otherwise the zoom will not exceed\nthe limits.\n@platform ios"
+      },
+      "alwaysBounceHorizontal": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view bounces horizontally when it reaches the end\neven if the content is smaller than the scroll view itself. The default\nvalue is true when `horizontal={true}` and false otherwise.\n@platform ios"
+      },
+      "alwaysBounceVertical": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view bounces vertically when it reaches the end\neven if the content is smaller than the scroll view itself. The default\nvalue is false when `horizontal={true}` and true otherwise.\n@platform ios"
+      },
+      "centerContent": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view automatically centers the content when the\ncontent is smaller than the scroll view bounds; when the content is\nlarger than the scroll view, this property has no effect. The default\nvalue is false.\n@platform ios"
+      },
+      "contentContainerStyle": {
+        "type": {
+          "name": "custom",
+          "raw": "StyleSheetPropType(ViewStylePropTypes)"
+        },
+        "required": false,
+        "description": "These styles will be applied to the scroll view content container which\nwraps all of the child views. Example:\n\n  return (\n    <ScrollView contentContainerStyle={styles.contentContainer}>\n    </ScrollView>\n  );\n  ...\n  var styles = StyleSheet.create({\n    contentContainer: {\n      paddingVertical: 20\n    }\n  });"
+      },
+      "decelerationRate": {
+        "type": {
+          "name": "union",
+          "value": [
+            {
+              "name": "enum",
+              "value": [
+                {
+                  "value": "'fast'",
+                  "computed": false
+                },
+                {
+                  "value": "'normal'",
+                  "computed": false
+                }
+              ]
+            },
+            {
+              "name": "number"
+            }
+          ]
+        },
+        "required": false,
+        "description": "A floating-point number that determines how quickly the scroll view\ndecelerates after the user lifts their finger. You may also use string\nshortcuts `\"normal\"` and `\"fast\"` which match the underlying iOS settings\nfor `UIScrollViewDecelerationRateNormal` and\n`UIScrollViewDecelerationRateFast` respectively.\n  - Normal: 0.998 (the default)\n  - Fast: 0.9\n@platform ios"
+      },
+      "horizontal": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view's children are arranged horizontally in a row\ninstead of vertically in a column. The default value is false."
+      },
+      "indicatorStyle": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "\"black\"",
+              "computed": false
+            },
+            {
+              "value": "'white'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "The style of the scroll indicators.\n  - `default` (the default), same as `black`.\n  - `black`, scroll indicator is black. This style is good against a white content background.\n  - `white`, scroll indicator is white. This style is good against a black content background.\n@platform ios"
+      },
+      "directionalLockEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the ScrollView will try to lock to only vertical or horizontal\nscrolling while dragging.  The default value is false.\n@platform ios"
+      },
+      "canCancelContentTouches": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When false, once tracking starts, won't try to drag if the touch moves.\nThe default value is true.\n@platform ios"
+      },
+      "keyboardDismissMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'none'",
+              "computed": false
+            },
+            {
+              "value": "\"interactive\"",
+              "computed": false
+            },
+            {
+              "value": "'on-drag'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Determines whether the keyboard gets dismissed in response to a drag.\n  - 'none' (the default), drags do not dismiss the keyboard.\n  - 'on-drag', the keyboard is dismissed when a drag begins.\n  - 'interactive', the keyboard is dismissed interactively with the drag and moves in\n    synchrony with the touch; dragging upwards cancels the dismissal.\n    On android this is not supported and it will have the same behavior as 'none'."
+      },
+      "keyboardShouldPersistTaps": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When false, tapping outside of the focused text input when the keyboard\nis up dismisses the keyboard. When true, the scroll view will not catch\ntaps, and the keyboard will not dismiss automatically. The default value\nis false."
+      },
+      "maximumZoomScale": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The maximum allowed zoom scale. The default value is 1.0.\n@platform ios"
+      },
+      "minimumZoomScale": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The minimum allowed zoom scale. The default value is 1.0.\n@platform ios"
+      },
+      "onScroll": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Fires at most once per frame during scrolling. The frequency of the\nevents can be controlled using the `scrollEventThrottle` prop."
+      },
+      "onScrollAnimationEnd": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Called when a scrolling animation ends.\n@platform ios"
+      },
+      "onContentSizeChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Called when scrollable content view of the ScrollView changes. It's\nimplemented using onLayout handler attached to the content container\nwhich this ScrollView renders."
+      },
+      "pagingEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view stops on multiples of the scroll view's size\nwhen scrolling. This can be used for horizontal pagination. The default\nvalue is false.\n@platform ios"
+      },
+      "scrollEnabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When false, the content does not scroll.\nThe default value is true."
+      },
+      "scrollEventThrottle": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "This controls how often the scroll event will be fired while scrolling\n(in events per seconds). A higher number yields better accuracy for code\nthat is tracking the scroll position, but can lead to scroll performance\nproblems due to the volume of information being send over the bridge.\nThe default value is zero, which means the scroll event will be sent\nonly once each time the view is scrolled.\n@platform ios"
+      },
+      "scrollIndicatorInsets": {
+        "type": {
+          "name": "custom",
+          "raw": "EdgeInsetsPropType"
+        },
+        "required": false,
+        "description": "The amount by which the scroll view indicators are inset from the edges\nof the scroll view. This should normally be set to the same value as\nthe `contentInset`. Defaults to `{0, 0, 0, 0}`.\n@platform ios"
+      },
+      "scrollsToTop": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, the scroll view scrolls to top when the status bar is tapped.\nThe default value is true.\n@platform ios"
+      },
+      "sendMomentumEvents": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, momentum events will be sent from Android\nThis is internal and set automatically by the framework if you have\nonMomentumScrollBegin or onMomentumScrollEnd set on your ScrollView\n@platform android"
+      },
+      "showsHorizontalScrollIndicator": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, shows a horizontal scroll indicator."
+      },
+      "showsVerticalScrollIndicator": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, shows a vertical scroll indicator."
+      },
+      "stickyHeaderIndices": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "number"
+          }
+        },
+        "required": false,
+        "description": "An array of child indices determining which children get docked to the\ntop of the screen when scrolling. For example, passing\n`stickyHeaderIndices={[0]}` will cause the first child to be fixed to the\ntop of the scroll view. This property is not supported in conjunction\nwith `horizontal={true}`.\n@platform ios"
+      },
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "StyleSheetPropType(ViewStylePropTypes)"
+        },
+        "required": false,
+        "description": ""
+      },
+      "snapToInterval": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "When set, causes the scroll view to stop at multiples of the value of\n`snapToInterval`. This can be used for paginating through children\nthat have lengths smaller than the scroll view. Used in combination\nwith `snapToAlignment`.\n@platform ios"
+      },
+      "snapToAlignment": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'start'",
+              "computed": false
+            },
+            {
+              "value": "\"center\"",
+              "computed": false
+            },
+            {
+              "value": "'end'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "When `snapToInterval` is set, `snapToAlignment` will define the relationship\nof the snapping to the scroll view.\n  - `start` (the default) will align the snap at the left (horizontal) or top (vertical)\n  - `center` will align the snap in the center\n  - `end` will align the snap at the right (horizontal) or bottom (vertical)\n@platform ios"
+      },
+      "removeClippedSubviews": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Experimental: When true, offscreen child views (whose `overflow` value is\n`hidden`) are removed from their native backing superview when offscreen.\nThis can improve scrolling performance on long lists. The default value is\ntrue."
+      },
+      "zoomScale": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The current scale of the scroll view content. The default value is 1.0.\n@platform ios"
+      },
+      "refreshControl": {
+        "type": {
+          "name": "element"
+        },
+        "required": false,
+        "description": "A RefreshControl component, used to provide pull-to-refresh\nfunctionality for the ScrollView.\n\nSee [RefreshControl](docs/refreshcontrol.html)."
+      },
+      "onRefreshStart": {
+        "type": {
+          "name": "custom",
+          "raw": "deprecatedPropType(\n  PropTypes.func,\n  'Use the `refreshControl` prop instead.'\n)"
+        },
+        "required": false,
+        "description": "@platform ios"
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "SegmentedControl": {
+    "description": "Use `SegmentedControlIOS` to render a UISegmentedControl iOS.",
+    "props": {
+      "values": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "string"
+          }
+        },
+        "required": false,
+        "description": "The labels for the control's segment buttons, in order.",
+        "defaultValue": {
+          "value": "[]",
+          "computed": false
+        }
+      },
+      "selectedIndex": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "The index in `props.values` of the segment to be pre-selected"
+      },
+      "onValueChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the user taps a segment;\npasses the segment's value as an argument"
+      },
+      "onChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the user taps a segment;\npasses the event as an argument"
+      },
+      "enabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If false the user won't be able to interact with the control.\nDefault value is true.",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "tintColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Accent color of the control."
+      },
+      "momentary": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, then selecting a segment won't persist visually.\nThe `onValueChange` callback will still work as expected."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "Slider": {
+    "description": "",
+    "props": {
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "View.propTypes.style"
+        },
+        "required": false,
+        "description": "Used to style and layout the `Slider`.  See `StyleSheet.js` and\n`ViewStylePropTypes.js` for more info."
+      },
+      "value": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Initial value of the slider. The value should be between minimumValue\nand maximumValue, which default to 0 and 1 respectively.\nDefault value is 0.\n\n*This is not a controlled component*, e.g. if you don't update\nthe value, the component won't be reset to its initial value."
+      },
+      "step": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Step value of the slider. The value should be\nbetween 0 and (maximumValue - minimumValue).\nDefault value is 0."
+      },
+      "minimumValue": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Initial minimum value of the slider. Default value is 0."
+      },
+      "maximumValue": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Initial maximum value of the slider. Default value is 1."
+      },
+      "minimumTrackTintColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The color used for the track to the left of the button. Overrides the\ndefault blue gradient image."
+      },
+      "maximumTrackTintColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The color used for the track to the right of the button. Overrides the\ndefault blue gradient image."
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true the user won't be able to move the slider.\nDefault value is false.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "trackImage": {
+        "type": {
+          "name": "custom",
+          "raw": "Image.propTypes.source"
+        },
+        "required": false,
+        "description": "Assigns a single image for the track. Only static images are supported.\nThe center pixel of the image will be stretched to fill the track."
+      },
+      "minimumTrackImage": {
+        "type": {
+          "name": "custom",
+          "raw": "Image.propTypes.source"
+        },
+        "required": false,
+        "description": "Assigns a minimum track image. Only static images are supported. The\nrightmost pixel of the image will be stretched to fill the track."
+      },
+      "maximumTrackImage": {
+        "type": {
+          "name": "custom",
+          "raw": "Image.propTypes.source"
+        },
+        "required": false,
+        "description": "Assigns a maximum track image. Only static images are supported. The\nleftmost pixel of the image will be stretched to fill the track."
+      },
+      "thumbImage": {
+        "type": {
+          "name": "custom",
+          "raw": "Image.propTypes.source"
+        },
+        "required": false,
+        "description": "Sets an image for the thumb. It only supports static images."
+      },
+      "onValueChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback continuously called while the user is dragging the slider."
+      },
+      "onSlidingComplete": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback called when the user finishes changing the value (e.g. when\nthe slider is released)."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "StatusBar.js": {
+    "description": "Component to control the app status bar.\n\n### Usage with Navigator\n\nIt is possible to have multiple `StatusBar` components mounted at the same\ntime. The props will be merged in the order the `StatusBar` components were\nmounted. One use case is to specify status bar styles per route using `Navigator`.\n\n```\n <View>\n   <StatusBar\n     backgroundColor=\"blue\"\n     barStyle=\"light-content\"\n   />\n   <Navigator\n     initialRoute={{statusBarHidden: true}}\n     renderScene={(route, navigator) =>\n       <View>\n         <StatusBar hidden={route.statusBarHidden} />\n         ...\n       </View>\n     }\n   />\n </View>\n```\n\n### Imperative API\n\nFor cases where using a component is not ideal, there is also an imperative\nAPI exposed as static functions on the component. It is however not recommended\nto use the static API and the compoment for the same prop because any value\nset by the static API will get overriden by the one set by the component in\nthe next render.",
+    "props": {
+      "hidden": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If the status bar is hidden."
+      },
+      "animated": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If the transition between status bar property changes should be animated.\nSupported for backgroundColor, barStyle and hidden.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "backgroundColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "The background color of the status bar.\n@platform android"
+      },
+      "translucent": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If the status bar is translucent.\nWhen translucent is set to true, the app will draw under the status bar.\nThis is useful when using a semi transparent status bar color.\n\n@platform android"
+      },
+      "barStyle": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'light-content'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Sets the color of the status bar text.\n\n@platform ios"
+      },
+      "networkActivityIndicatorVisible": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If the network activity indicator should be visible.\n\n@platform ios"
+      },
+      "showHideTransition": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'fade'",
+              "computed": false
+            },
+            {
+              "value": "'slide'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "The transition effect when showing and hiding the status bar using the `hidden`\nprop. Defaults to 'fade'.\n\n@platform ios",
+        "defaultValue": {
+          "value": "'fade'",
+          "computed": false
+        }
+      }
+    }
+  },
+  "Switch.js": {
+    "description": "Universal two-state toggle component.",
+    "props": {
+      "value": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "The value of the switch.  If true the switch will be turned on.\nDefault value is false.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true the user won't be able to toggle the switch.\nDefault value is false.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onValueChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Invoked with the new value when the value changes."
+      },
+      "testID": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Used to locate this view in end-to-end tests."
+      },
+      "tintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Background color when the switch is turned off.\n@platform ios"
+      },
+      "onTintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Background color when the switch is turned on.\n@platform ios"
+      },
+      "thumbTintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Color of the foreground switch grip.\n@platform ios"
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "Switch": {
+    "description": "Use `SwitchIOS` to render a boolean input on iOS.  This is\na controlled component, so you must hook in to the `onValueChange` callback\nand update the `value` prop in order for the component to update, otherwise\nthe user's change will be reverted immediately to reflect `props.value` as the\nsource of truth.",
+    "props": {
+      "value": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "The value of the switch, if true the switch will be turned on.\nDefault value is false.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "disabled": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true the user won't be able to toggle the switch.\nDefault value is false.",
+        "defaultValue": {
+          "value": "false",
+          "computed": false
+        }
+      },
+      "onValueChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the user toggles the switch."
+      },
+      "onTintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Background color when the switch is turned on."
+      },
+      "thumbTintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Background color for the switch round button."
+      },
+      "tintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Background color when the switch is turned off."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "TabBar": {
+    "description": "",
+    "props": {
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "View.propTypes.style"
+        },
+        "required": false,
+        "description": ""
+      },
+      "tintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Color of the currently selected tab icon"
+      },
+      "barTintColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Background color of the tab bar"
+      },
+      "translucent": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "A Boolean value that indicates whether the tab bar is translucent"
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "TextInput.js": {
+    "description": "A foundational component for inputting text into the app via a\nkeyboard. Props provide configurability for several features, such as\nauto-correction, auto-capitalization, placeholder text, and different keyboard\ntypes, such as a numeric keypad.\n\nThe simplest use case is to plop down a `TextInput` and subscribe to the\n`onChangeText` events to read the user input. There are also other events,\nsuch as `onSubmitEditing` and `onFocus` that can be subscribed to. A simple\nexample:\n\n```\n  <TextInput\n    style={{height: 40, borderColor: 'gray', borderWidth: 1}}\n    onChangeText={(text) => this.setState({text})}\n    value={this.state.text}\n  />\n```\n\nNote that some props are only available with `multiline={true/false}`:",
+    "props": {
+      "autoCapitalize": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'none'",
+              "computed": false
+            },
+            {
+              "value": "'sentences'",
+              "computed": false
+            },
+            {
+              "value": "'words'",
+              "computed": false
+            },
+            {
+              "value": "'characters'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Can tell TextInput to automatically capitalize certain characters.\n\n- characters: all characters,\n- words: first letter of each word\n- sentences: first letter of each sentence (default)\n- none: don't auto capitalize anything"
+      },
+      "autoCorrect": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If false, disables auto-correct. The default value is true."
+      },
+      "autoFocus": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, focuses the input on componentDidMount.\nThe default value is false."
+      },
+      "editable": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If false, text is not editable. The default value is true."
+      },
+      "keyboardType": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "\"default\"",
+              "computed": false
+            },
+            {
+              "value": "'email-address'",
+              "computed": false
+            },
+            {
+              "value": "'numeric'",
+              "computed": false
+            },
+            {
+              "value": "'phone-pad'",
+              "computed": false
+            },
+            {
+              "value": "\"ascii-capable\"",
+              "computed": false
+            },
+            {
+              "value": "'numbers-and-punctuation'",
+              "computed": false
+            },
+            {
+              "value": "'url'",
+              "computed": false
+            },
+            {
+              "value": "'number-pad'",
+              "computed": false
+            },
+            {
+              "value": "'name-phone-pad'",
+              "computed": false
+            },
+            {
+              "value": "'decimal-pad'",
+              "computed": false
+            },
+            {
+              "value": "'twitter'",
+              "computed": false
+            },
+            {
+              "value": "'web-search'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Determines which keyboard to open, e.g.`numeric`.\n\nThe following values work across platforms:\n- default\n- numeric\n- email-address"
+      },
+      "keyboardAppearance": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'light'",
+              "computed": false
+            },
+            {
+              "value": "'dark'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Determines the color of the keyboard.\n@platform ios"
+      },
+      "returnKeyType": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'default'",
+              "computed": false
+            },
+            {
+              "value": "'go'",
+              "computed": false
+            },
+            {
+              "value": "'google'",
+              "computed": false
+            },
+            {
+              "value": "'join'",
+              "computed": false
+            },
+            {
+              "value": "'next'",
+              "computed": false
+            },
+            {
+              "value": "'route'",
+              "computed": false
+            },
+            {
+              "value": "'search'",
+              "computed": false
+            },
+            {
+              "value": "'send'",
+              "computed": false
+            },
+            {
+              "value": "'yahoo'",
+              "computed": false
+            },
+            {
+              "value": "'done'",
+              "computed": false
+            },
+            {
+              "value": "'emergency-call'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "Determines how the return key should look.\n@platform ios"
+      },
+      "maxLength": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Limits the maximum number of characters that can be entered. Use this\ninstead of implementing the logic in JS to avoid flicker."
+      },
+      "numberOfLines": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Sets the number of lines for a TextInput. Use it with multiline set to\ntrue to be able to fill the lines.\n@platform android"
+      },
+      "enablesReturnKeyAutomatically": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the keyboard disables the return key when there is no text and\nautomatically enables it when there is text. The default value is false.\n@platform ios"
+      },
+      "multiline": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the text input can be multiple lines.\nThe default value is false."
+      },
+      "onBlur": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the text input is blurred"
+      },
+      "onFocus": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the text input is focused"
+      },
+      "onChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the text input's text changes."
+      },
+      "onChangeText": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the text input's text changes.\nChanged text is passed as an argument to the callback handler."
+      },
+      "onEndEditing": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when text input ends."
+      },
+      "onSelectionChange": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the text input selection is changed"
+      },
+      "onSubmitEditing": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when the text input's submit button is pressed.\nInvalid if multiline={true} is specified."
+      },
+      "onKeyPress": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when a key is pressed.\nPressed key value is passed as an argument to the callback handler.\nFires before onChange callbacks.\n@platform ios"
+      },
+      "onLayout": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Invoked on mount and layout changes with `{x, y, width, height}`."
+      },
+      "placeholder": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The string that will be rendered before text input has been entered"
+      },
+      "placeholderTextColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The text color of the placeholder string"
+      },
+      "secureTextEntry": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the text input obscures the text entered so that sensitive text\nlike passwords stay secure. The default value is false."
+      },
+      "selectionColor": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The highlight (and cursor on ios) color of the text input"
+      },
+      "selectionState": {
+        "type": {
+          "name": "instanceOf",
+          "value": "DocumentSelectionState"
+        },
+        "required": false,
+        "description": "See DocumentSelectionState.js, some state that is responsible for\nmaintaining selection information for a document\n@platform ios"
+      },
+      "value": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The value to show for the text input. TextInput is a controlled\ncomponent, which means the native value will be forced to match this\nvalue prop if provided. For most uses this works great, but in some\ncases this may cause flickering - one common cause is preventing edits\nby keeping value the same. In addition to simply setting the same value,\neither set `editable={false}`, or set/update `maxLength` to prevent\nunwanted edits without flicker."
+      },
+      "defaultValue": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Provides an initial value that will change when the user starts typing.\nUseful for simple use-cases where you don't want to deal with listening\nto events and updating the value prop to keep the controlled state in sync."
+      },
+      "clearButtonMode": {
+        "type": {
+          "name": "enum",
+          "value": [
+            {
+              "value": "'never'",
+              "computed": false
+            },
+            {
+              "value": "'while-editing'",
+              "computed": false
+            },
+            {
+              "value": "'unless-editing'",
+              "computed": false
+            },
+            {
+              "value": "'always'",
+              "computed": false
+            }
+          ]
+        },
+        "required": false,
+        "description": "When the clear button should appear on the right side of the text view\n@platform ios"
+      },
+      "clearTextOnFocus": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, clears the text field automatically when editing begins\n@platform ios"
+      },
+      "selectTextOnFocus": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, all text will automatically be selected on focus\n@platform ios"
+      },
+      "blurOnSubmit": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "If true, the text field will blur when submitted.\nThe default value is true for single-line fields and false for\nmultiline fields. Note that for multiline fields, setting blurOnSubmit\nto true means that pressing return will blur the field and trigger the\nonSubmitEditing event instead of inserting a newline into the field."
+      },
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "Text.propTypes.style"
+        },
+        "required": false,
+        "description": "Styles"
+      },
+      "underlineColorAndroid": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "The color of the textInput underline.\n@platform android"
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  },
+  "Toolbar": {
+    "description": "React component that wraps the Android-only [`Toolbar` widget][0]. A Toolbar can display a logo,\nnavigation icon (e.g. hamburger menu), a title & subtitle and a list of actions. The title and\nsubtitle are expanded so the logo and navigation icons are displayed on the left, title and\nsubtitle in the middle and the actions on the right.\n\nIf the toolbar has an only child, it will be displayed between the title and actions.\n\nAlthough the Toolbar supports remote images for the logo, navigation and action icons, this\nshould only be used in DEV mode where `require('./some_icon.png')` translates into a packager\nURL. In release mode you should always use a drawable resource for these icons. Using\n`require('./some_icon.png')` will do this automatically for you, so as long as you don't\nexplicitly use e.g. `{uri: 'http://...'}`, you will be good.\n\nExample:\n\n```\nrender: function() {\n  return (\n    <ToolbarAndroid\n      logo={require('./app_logo.png')}\n      title=\"AwesomeApp\"\n      actions={[{title: 'Settings', icon: require('./icon_settings.png'), show: 'always'}]}\n      onActionSelected={this.onActionSelected} />\n  )\n},\nonActionSelected: function(position) {\n  if (position === 0) { // index of 'Settings'\n    showSettings();\n  }\n}\n```\n\n[0]: https://developer.android.com/reference/android/support/v7/widget/Toolbar.html",
+    "props": {
+      "actions": {
+        "type": {
+          "name": "arrayOf",
+          "value": {
+            "name": "shape",
+            "value": {
+              "title": {
+                "name": "string",
+                "required": true
+              },
+              "icon": {
+                "name": "custom",
+                "raw": "optionalImageSource",
+                "required": false
+              },
+              "show": {
+                "name": "enum",
+                "value": [
+                  {
+                    "value": "'always'",
+                    "computed": false
+                  },
+                  {
+                    "value": "'ifRoom'",
+                    "computed": false
+                  },
+                  {
+                    "value": "'never'",
+                    "computed": false
+                  }
+                ],
+                "required": false
+              },
+              "showWithText": {
+                "name": "bool",
+                "required": false
+              }
+            }
+          }
+        },
+        "required": false,
+        "description": "Sets possible actions on the toolbar as part of the action menu. These are displayed as icons\nor text on the right side of the widget. If they don't fit they are placed in an 'overflow'\nmenu.\n\nThis property takes an array of objects, where each object has the following keys:\n\n* `title`: **required**, the title of this action\n* `icon`: the icon for this action, e.g. `require('./some_icon.png')`\n* `show`: when to show this action as an icon or hide it in the overflow menu: `always`,\n`ifRoom` or `never`\n* `showWithText`: boolean, whether to show text alongside the icon or not"
+      },
+      "logo": {
+        "type": {
+          "name": "custom",
+          "raw": "optionalImageSource"
+        },
+        "required": false,
+        "description": "Sets the toolbar logo."
+      },
+      "navIcon": {
+        "type": {
+          "name": "custom",
+          "raw": "optionalImageSource"
+        },
+        "required": false,
+        "description": "Sets the navigation icon."
+      },
+      "onActionSelected": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback that is called when an action is selected. The only argument that is passed to the\ncallback is the position of the action in the actions array."
+      },
+      "onIconClicked": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Callback called when the icon is selected."
+      },
+      "overflowIcon": {
+        "type": {
+          "name": "custom",
+          "raw": "optionalImageSource"
+        },
+        "required": false,
+        "description": "Sets the overflow icon."
+      },
+      "subtitle": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Sets the toolbar subtitle."
+      },
+      "subtitleColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Sets the toolbar subtitle color."
+      },
+      "title": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Sets the toolbar title."
+      },
+      "titleColor": {
+        "type": {
+          "name": "custom",
+          "raw": "ColorPropType"
+        },
+        "required": false,
+        "description": "Sets the toolbar title color."
+      },
+      "contentInsetStart": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Sets the content inset for the toolbar starting edge.\n\nThe content inset affects the valid area for Toolbar content other than\nthe navigation button and menu. Insets define the minimum margin for\nthese components and can be used to effectively align Toolbar content\nalong well-known gridlines."
+      },
+      "contentInsetEnd": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Sets the content inset for the toolbar ending edge.\n\nThe content inset affects the valid area for Toolbar content other than\nthe navigation button and menu. Insets define the minimum margin for\nthese components and can be used to effectively align Toolbar content\nalong well-known gridlines."
+      },
+      "rtl": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Used to set the toolbar direction to RTL.\nIn addition to this property you need to add\n\n  android:supportsRtl=\"true\"\n\nto your application AndroidManifest.xml and then call\n`setLayoutDirection(LayoutDirection.RTL)` in your MainActivity\n`onCreate` method."
+      },
+      "testID": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Used to locate this view in end-to-end tests."
+      }
+    },
+    "composes": [
+      "View"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+Run `node components.js` to generate `components.json`.
