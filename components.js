@@ -66,7 +66,7 @@
       rnModulesJSON[moduleName] = json;
 
       let propNames = Object.keys(json.props);
-      const allowedPropTypes = ["bool", "string", "number", "enum"];
+      const allowedPropTypes = ["bool", "string", "number", "enum", "func"];
       const elmPropTypes = {
         "bool": { type: "Bool", encoder: "bool" },
         "string": { type: "String", encoder: "string" },
@@ -86,6 +86,10 @@
                   enumValues(json.props[propName].type.value)
                 );
               }
+            } else if (propType === "func") {
+              return elmTransformer.funcProperty(
+                propName
+              );
             } else {
               return elmTransformer.property(
                 propName,

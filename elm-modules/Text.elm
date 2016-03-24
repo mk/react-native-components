@@ -6,6 +6,16 @@ numberOfLines val =
   JsonProperty "numberOfLines" (Json.Encode.float val)
 
 
+onLayout : Signal.Address a -> a -> Property
+onLayout address msg =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onPress : Signal.Address a -> a -> Property
+onPress address msg =
+  on "Press" Json.Decode.value (\_ -> Signal.message address msg)
+
+
 suppressHighlighting : Bool -> Property
 suppressHighlighting val =
   JsonProperty "suppressHighlighting" (Json.Encode.bool val)

@@ -1,6 +1,11 @@
 module RefreshControl (..) where
 
 
+onRefresh : Signal.Address a -> a -> Property
+onRefresh address msg =
+  on "Refresh" Json.Decode.value (\_ -> Signal.message address msg)
+
+
 refreshing : Bool -> Property
 refreshing val =
   JsonProperty "refreshing" (Json.Encode.bool val)

@@ -1,0 +1,3 @@
+<%- funcName %> : Signal.Address a -> a -> Property
+<%- funcName %> address msg =
+  on "<%- handlerName %>" Json.Decode.value (\_ -> Signal.message address msg)

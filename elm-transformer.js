@@ -11,6 +11,7 @@ class ElmTransformer {
     this.moduleTemplate = fs.readFileSync("templates/module.ejs", 'utf8');
     this.propertyTemplate = fs.readFileSync("templates/property.ejs", 'utf8');
     this.enumPropertyTemplate = fs.readFileSync("templates/enum-property.ejs", 'utf8');
+    this.funcPropertyTemplate = fs.readFileSync("templates/func-property.ejs", 'utf8');
   }
 
   module(moduleName, content) {
@@ -41,6 +42,13 @@ class ElmTransformer {
       unionTypeName: unionTypeName,
       unionTypeValues: unionTypeValues,
       valueToStringCaseBody: valueToStringCaseBody
+    });
+  }
+
+  funcProperty(funcName) {
+    return ejs.render(this.funcPropertyTemplate, {
+      funcName: funcName,
+      handlerName: funcName.replace("on", "")
     });
   }
 }

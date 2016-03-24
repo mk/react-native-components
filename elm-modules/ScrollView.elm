@@ -113,6 +113,21 @@ minimumZoomScale val =
   JsonProperty "minimumZoomScale" (Json.Encode.float val)
 
 
+onScroll : Signal.Address a -> a -> Property
+onScroll address msg =
+  on "Scroll" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onScrollAnimationEnd : Signal.Address a -> a -> Property
+onScrollAnimationEnd address msg =
+  on "ScrollAnimationEnd" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onContentSizeChange : Signal.Address a -> a -> Property
+onContentSizeChange address msg =
+  on "ContentSizeChange" Json.Decode.value (\_ -> Signal.message address msg)
+
+
 pagingEnabled : Bool -> Property
 pagingEnabled val =
   JsonProperty "pagingEnabled" (Json.Encode.bool val)

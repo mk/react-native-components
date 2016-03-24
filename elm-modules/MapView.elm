@@ -77,6 +77,21 @@ minDelta val =
   JsonProperty "minDelta" (Json.Encode.float val)
 
 
+onRegionChange : Signal.Address a -> a -> Property
+onRegionChange address msg =
+  on "RegionChange" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onRegionChangeComplete : Signal.Address a -> a -> Property
+onRegionChangeComplete address msg =
+  on "RegionChangeComplete" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onAnnotationPress : Signal.Address a -> a -> Property
+onAnnotationPress address msg =
+  on "AnnotationPress" Json.Decode.value (\_ -> Signal.message address msg)
+
+
 active : Bool -> Property
 active val =
   JsonProperty "active" (Json.Encode.bool val)

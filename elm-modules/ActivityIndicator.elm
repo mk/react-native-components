@@ -36,3 +36,8 @@ size val =
       Json.Encode.string stringValue
   in
     JsonProperty "size" jsonValue
+
+
+onLayout : Signal.Address a -> a -> Property
+onLayout address msg =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)

@@ -1,6 +1,11 @@
 module Picker (..) where
 
 
+onValueChange : Signal.Address a -> a -> Property
+onValueChange address msg =
+  on "ValueChange" Json.Decode.value (\_ -> Signal.message address msg)
+
+
 enabled : Bool -> Property
 enabled val =
   JsonProperty "enabled" (Json.Encode.bool val)

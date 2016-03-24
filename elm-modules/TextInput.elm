@@ -212,6 +212,51 @@ multiline val =
   JsonProperty "multiline" (Json.Encode.bool val)
 
 
+onBlur : Signal.Address a -> a -> Property
+onBlur address msg =
+  on "Blur" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onFocus : Signal.Address a -> a -> Property
+onFocus address msg =
+  on "Focus" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onChange : Signal.Address a -> a -> Property
+onChange address msg =
+  on "Change" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onChangeText : Signal.Address a -> a -> Property
+onChangeText address msg =
+  on "ChangeText" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onEndEditing : Signal.Address a -> a -> Property
+onEndEditing address msg =
+  on "EndEditing" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onSelectionChange : Signal.Address a -> a -> Property
+onSelectionChange address msg =
+  on "SelectionChange" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onSubmitEditing : Signal.Address a -> a -> Property
+onSubmitEditing address msg =
+  on "SubmitEditing" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onKeyPress : Signal.Address a -> a -> Property
+onKeyPress address msg =
+  on "KeyPress" Json.Decode.value (\_ -> Signal.message address msg)
+
+
+onLayout : Signal.Address a -> a -> Property
+onLayout address msg =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)
+
+
 placeholder : String -> Property
 placeholder val =
   JsonProperty "placeholder" (Json.Encode.string val)
