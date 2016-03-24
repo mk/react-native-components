@@ -99,13 +99,15 @@
     } catch (e) {
       console.log(e);
     }
+  });
+  if (Object.keys(componentsJSON).length > 0) {
     fs.writeFileSync(
       "components.json",
       JSON.stringify(componentsJSON, null, 2),
       "utf8"
     );
-    exec("elm-format --yes components", function(error, stdout, stderr) {
-      console.log(stdout);
-    });
+  }
+  exec("elm-format --yes components", function(error, stdout, stderr) {
+    console.log(stdout);
   });
 })();
