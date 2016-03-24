@@ -5,17 +5,38 @@
   var fs = require("fs");
   var ejs = require("ejs");
   var _ = require("lodash");
+  var capitalize = require("underscore.string/capitalize");
+  var decapitalize = require("underscore.string/decapitalize");
+  var trim = require("underscore.string/trim");
 
   var prefix = "node_modules/react-native/Libraries/Components/";
 
   var ElmTransformer = {
-    module: function(name, content) {
+    module: function(moduleName, content) {
       var template = fs.readFileSync("templates/module.ejs", 'utf8');
-      return ejs.render(template, { name: name, content: content });
+      return ejs.render(template, { moduleName: moduleName, content: content });
     },
-    property: function(name, type, values) {
+    property: function(propName, propType) {
       var template = fs.readFileSync("templates/property.ejs", 'utf8');
-      return ejs.render(template, { name: name, type: type, values: values });
+      return ejs.render(template, { propName: propName, propType: propType });
+    },
+    enumProperty : function(propName, moduleName, values) {
+      var template = fs.readFileSync("templates/enum-property.ejs", 'utf8');
+      var unionTypeName = capitalize(moduleName) + capitalize(propName);
+      var unionTypeValues = values.map(function(value) {
+        return capitalize(moduleName) + capitalize(value);
+      }).join("\n| ");
+      var valueFuncName = decapitalize(moduleName) + capitalize(propName) + "Value";
+      var valueToStringCaseBody = values.map(function(value) {
+        return unionTypeName + capitalize(value) + " -> " + '"' + value + '"';
+      }).join("\n");
+
+      return ejs.render(template, {
+        propName: propName,
+        unionTypeName: unionTypeName,
+        unionTypeValues: unionTypeValues,
+        valueToStringCaseBody: valueToStringCaseBody
+      });
     }
   }
 
@@ -50,19 +71,24 @@
     "View/View.js"
   ];
   var componentsJSON = {};
+  var enumValues = function(jsonValues) {
+    return jsonValues.map(function(val) {
+      return val.value.replace(/'/g, "");
+    });
+  }
   componentFiles.forEach(function(file) {
     var source = fs.readFileSync(prefix + file, 'utf8');
-    var componentName = file
+    var moduleName = file
       .replace(/^([^\/]*\/|)/, "")
       .replace("IOS.ios.js", "")
       .replace("Android.android.js", "")
       .replace(".js", "");
     try {
       var json = reactDocs.parse(source);
-      componentsJSON[componentName] = json;
+      componentsJSON[moduleName] = json;
 
       var propNames = Object.keys(json.props);
-      var allowedPropTypes = ["bool", "string", "number"];
+      var allowedPropTypes = ["bool", "string", "number", "enum"];
       var elmPropTypes = {
         "bool": { type: "Bool", encoder: "bool" },
         "string": { type: "String", encoder: "string" },
@@ -70,22 +96,30 @@
       };
 
       var elmModuleContent = propNames.map(function(propName) {
-        if (allowedPropTypes.indexOf(json.props[propName].type.name) !== -1) {
-          var type = elmPropTypes[json.props[propName].type.name];
-          return ElmTransformer.property(
-            propName,
-            type,
-            json.props[propName].value
-          );
+        var propType = json.props[propName].type.name;
+        if (allowedPropTypes.indexOf(propType) !== -1) {
+          if (propType === "enum") {
+            console.log(json.props[propName].type.value);
+            return ElmTransformer.enumProperty(
+              propName,
+              moduleName,
+              enumValues(json.props[propName].type.value)
+            );
+          } else {
+            return ElmTransformer.property(
+              propName,
+              propType
+            );
+          }
         }
       });
       elmModuleContent = _.compact(elmModuleContent);
       var elmComponent = ElmTransformer.module(
-        componentName,
+        moduleName,
         elmModuleContent.join("\n\n")
       );
       fs.writeFileSync(
-        "components/" + componentName + ".elm",
+        "components/" + moduleName + ".elm",
         elmComponent,
         "utf8"
       );

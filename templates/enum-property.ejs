@@ -1,0 +1,11 @@
+type <%- unionTypeName %>
+  = <%- unionTypeValues %>
+
+<%- propName %> : <%- unionTypeName %> -> Property
+<%- propName %> val =
+  let
+    stringValue = case <%- propName %> of
+      <%- valueToStringCaseBody %>
+    jsonValue = Json.Encode.string stringValue
+  in
+    JsonProperty "<%- propName %>" jsonValue
