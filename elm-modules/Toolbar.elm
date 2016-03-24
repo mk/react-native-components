@@ -2,13 +2,13 @@ module Toolbar (..) where
 
 
 onActionSelected : Signal.Address a -> a -> Property
-onActionSelected address msg =
-  on "ActionSelected" Json.Decode.value (\_ -> Signal.message address msg)
+onActionSelected address action =
+  on "ActionSelected" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onIconClicked : Signal.Address a -> a -> Property
-onIconClicked address msg =
-  on "IconClicked" Json.Decode.value (\_ -> Signal.message address msg)
+onIconClicked address action =
+  on "IconClicked" Json.Decode.value (\_ -> Signal.message address action)
 
 
 subtitle : String -> Property

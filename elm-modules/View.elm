@@ -68,13 +68,13 @@ importantForAccessibility val =
 
 
 onAccessibilityTap : Signal.Address a -> a -> Property
-onAccessibilityTap address msg =
-  on "AccessibilityTap" Json.Decode.value (\_ -> Signal.message address msg)
+onAccessibilityTap address action =
+  on "AccessibilityTap" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onMagicTap : Signal.Address a -> a -> Property
-onMagicTap address msg =
-  on "MagicTap" Json.Decode.value (\_ -> Signal.message address msg)
+onMagicTap address action =
+  on "MagicTap" Json.Decode.value (\_ -> Signal.message address action)
 
 
 testID : String -> Property
@@ -83,58 +83,58 @@ testID val =
 
 
 onResponderGrant : Signal.Address a -> a -> Property
-onResponderGrant address msg =
-  on "ResponderGrant" Json.Decode.value (\_ -> Signal.message address msg)
+onResponderGrant address action =
+  on "ResponderGrant" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onResponderMove : Signal.Address a -> a -> Property
-onResponderMove address msg =
-  on "ResponderMove" Json.Decode.value (\_ -> Signal.message address msg)
+onResponderMove address action =
+  on "ResponderMove" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onResponderReject : Signal.Address a -> a -> Property
-onResponderReject address msg =
-  on "ResponderReject" Json.Decode.value (\_ -> Signal.message address msg)
+onResponderReject address action =
+  on "ResponderReject" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onResponderRelease : Signal.Address a -> a -> Property
-onResponderRelease address msg =
-  on "ResponderRelease" Json.Decode.value (\_ -> Signal.message address msg)
+onResponderRelease address action =
+  on "ResponderRelease" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onResponderTerminate : Signal.Address a -> a -> Property
-onResponderTerminate address msg =
-  on "ResponderTerminate" Json.Decode.value (\_ -> Signal.message address msg)
+onResponderTerminate address action =
+  on "ResponderTerminate" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onResponderTerminationRequest : Signal.Address a -> a -> Property
-onResponderTerminationRequest address msg =
-  on "ResponderTerminationRequest" Json.Decode.value (\_ -> Signal.message address msg)
+onResponderTerminationRequest address action =
+  on "ResponderTerminationRequest" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onStartShouldSetResponder : Signal.Address a -> a -> Property
-onStartShouldSetResponder address msg =
-  on "StartShouldSetResponder" Json.Decode.value (\_ -> Signal.message address msg)
+onStartShouldSetResponder address action =
+  on "StartShouldSetResponder" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onStartShouldSetResponderCapture : Signal.Address a -> a -> Property
-onStartShouldSetResponderCapture address msg =
-  on "StartShouldSetResponderCapture" Json.Decode.value (\_ -> Signal.message address msg)
+onStartShouldSetResponderCapture address action =
+  on "StartShouldSetResponderCapture" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onMoveShouldSetResponder : Signal.Address a -> a -> Property
-onMoveShouldSetResponder address msg =
-  on "MoveShouldSetResponder" Json.Decode.value (\_ -> Signal.message address msg)
+onMoveShouldSetResponder address action =
+  on "MoveShouldSetResponder" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onMoveShouldSetResponderCapture : Signal.Address a -> a -> Property
-onMoveShouldSetResponderCapture address msg =
-  on "MoveShouldSetResponderCapture" Json.Decode.value (\_ -> Signal.message address msg)
+onMoveShouldSetResponderCapture address action =
+  on "MoveShouldSetResponderCapture" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onLayout : Signal.Address a -> a -> Property
-onLayout address msg =
-  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)
+onLayout address action =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address action)
 
 
 type ViewPointerEvents

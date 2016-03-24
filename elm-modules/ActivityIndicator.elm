@@ -39,5 +39,5 @@ size val =
 
 
 onLayout : Signal.Address a -> a -> Property
-onLayout address msg =
-  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)
+onLayout address action =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address action)

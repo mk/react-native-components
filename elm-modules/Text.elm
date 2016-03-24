@@ -7,13 +7,13 @@ numberOfLines val =
 
 
 onLayout : Signal.Address a -> a -> Property
-onLayout address msg =
-  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)
+onLayout address action =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onPress : Signal.Address a -> a -> Property
-onPress address msg =
-  on "Press" Json.Decode.value (\_ -> Signal.message address msg)
+onPress address action =
+  on "Press" Json.Decode.value (\_ -> Signal.message address action)
 
 
 suppressHighlighting : Bool -> Property

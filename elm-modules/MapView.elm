@@ -78,18 +78,18 @@ minDelta val =
 
 
 onRegionChange : Signal.Address a -> a -> Property
-onRegionChange address msg =
-  on "RegionChange" Json.Decode.value (\_ -> Signal.message address msg)
+onRegionChange address action =
+  on "RegionChange" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onRegionChangeComplete : Signal.Address a -> a -> Property
-onRegionChangeComplete address msg =
-  on "RegionChangeComplete" Json.Decode.value (\_ -> Signal.message address msg)
+onRegionChangeComplete address action =
+  on "RegionChangeComplete" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onAnnotationPress : Signal.Address a -> a -> Property
-onAnnotationPress address msg =
-  on "AnnotationPress" Json.Decode.value (\_ -> Signal.message address msg)
+onAnnotationPress address action =
+  on "AnnotationPress" Json.Decode.value (\_ -> Signal.message address action)
 
 
 active : Bool -> Property

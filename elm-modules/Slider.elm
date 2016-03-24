@@ -36,11 +36,11 @@ disabled val =
   JsonProperty "disabled" (Json.Encode.bool val)
 
 
-onValueChange : Signal.Address a -> a -> Property
-onValueChange address msg =
-  on "ValueChange" Json.Decode.value (\_ -> Signal.message address msg)
+onValueChange : Signal.Address a -> (String -> a) -> Property
+onValueChange address stringToAction =
+  on "ValueChange" Json.Decode.string (\value -> Signal.message address (stringToAction value))
 
 
 onSlidingComplete : Signal.Address a -> a -> Property
-onSlidingComplete address msg =
-  on "SlidingComplete" Json.Decode.value (\_ -> Signal.message address msg)
+onSlidingComplete address action =
+  on "SlidingComplete" Json.Decode.value (\_ -> Signal.message address action)

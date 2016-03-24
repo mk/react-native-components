@@ -45,10 +45,22 @@ class ElmTransformer {
     });
   }
 
-  funcProperty(funcName) {
+  funcProperty(funcName, args) {
+    if (args) {
+      var funcDef = "(" + capitalize(args.type) + "-> a)";
+      var funcParamNames = args.type + "ToAction";
+      var decoder = "Json.Decode." + args.type + " (\\" + args.name +" -> Signal.message address (" + funcParamNames + " " + args.name + "))";
+    } else {
+      var funcDef = "a";
+      var funcParamNames = "action";
+      var decoder = "Json.Decode.value (\\_ -> Signal.message address action)";
+    }
     return ejs.render(this.funcPropertyTemplate, {
       funcName: funcName,
-      handlerName: funcName.replace("on", "")
+      handlerName: funcName.replace("on", ""),
+      funcDef: funcDef,
+      funcParamNames: funcParamNames,
+      decoder: decoder
     });
   }
 }

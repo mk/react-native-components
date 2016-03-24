@@ -45,6 +45,11 @@
     "Components/Touchable/Touchable.js",
     "Components/View/View.js"
   ];
+  const funcPropertyArgs = {
+    "onChangeText": { name: "text", type: "string" },
+    "onValueChange": { name: "value", type: "string" },
+    "onChange": { name: "event", type: "object" }
+  }
   var rnModulesJSON = {};
   var enumValues = function(jsonValues) {
     return jsonValues.map(function(val) {
@@ -88,7 +93,8 @@
               }
             } else if (propType === "func") {
               return elmTransformer.funcProperty(
-                propName
+                propName,
+                funcPropertyArgs[propName]
               );
             } else {
               return elmTransformer.property(

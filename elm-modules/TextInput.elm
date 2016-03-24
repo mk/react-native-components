@@ -213,48 +213,48 @@ multiline val =
 
 
 onBlur : Signal.Address a -> a -> Property
-onBlur address msg =
-  on "Blur" Json.Decode.value (\_ -> Signal.message address msg)
+onBlur address action =
+  on "Blur" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onFocus : Signal.Address a -> a -> Property
-onFocus address msg =
-  on "Focus" Json.Decode.value (\_ -> Signal.message address msg)
+onFocus address action =
+  on "Focus" Json.Decode.value (\_ -> Signal.message address action)
 
 
-onChange : Signal.Address a -> a -> Property
-onChange address msg =
-  on "Change" Json.Decode.value (\_ -> Signal.message address msg)
+onChange : Signal.Address a -> (Object -> a) -> Property
+onChange address objectToAction =
+  on "Change" Json.Decode.object (\event -> Signal.message address (objectToAction event))
 
 
-onChangeText : Signal.Address a -> a -> Property
-onChangeText address msg =
-  on "ChangeText" Json.Decode.value (\_ -> Signal.message address msg)
+onChangeText : Signal.Address a -> (String -> a) -> Property
+onChangeText address stringToAction =
+  on "ChangeText" Json.Decode.string (\text -> Signal.message address (stringToAction text))
 
 
 onEndEditing : Signal.Address a -> a -> Property
-onEndEditing address msg =
-  on "EndEditing" Json.Decode.value (\_ -> Signal.message address msg)
+onEndEditing address action =
+  on "EndEditing" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onSelectionChange : Signal.Address a -> a -> Property
-onSelectionChange address msg =
-  on "SelectionChange" Json.Decode.value (\_ -> Signal.message address msg)
+onSelectionChange address action =
+  on "SelectionChange" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onSubmitEditing : Signal.Address a -> a -> Property
-onSubmitEditing address msg =
-  on "SubmitEditing" Json.Decode.value (\_ -> Signal.message address msg)
+onSubmitEditing address action =
+  on "SubmitEditing" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onKeyPress : Signal.Address a -> a -> Property
-onKeyPress address msg =
-  on "KeyPress" Json.Decode.value (\_ -> Signal.message address msg)
+onKeyPress address action =
+  on "KeyPress" Json.Decode.value (\_ -> Signal.message address action)
 
 
 onLayout : Signal.Address a -> a -> Property
-onLayout address msg =
-  on "Layout" Json.Decode.value (\_ -> Signal.message address msg)
+onLayout address action =
+  on "Layout" Json.Decode.value (\_ -> Signal.message address action)
 
 
 placeholder : String -> Property
