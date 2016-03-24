@@ -7,6 +7,8 @@ const _ = require("lodash");
 const decapitalize = require("underscore.string/decapitalize");
 const ElmTransformer = require("./elm-transformer");
 const exec = require("child_process").exec;
+const rimraf = require("rimraf");
+
 const elmModulesDir = "elm-modules/";
 const rnLibPath = "node_modules/react-native/Libraries/";
 const rnModulePathPrefixes = ["Components", "Text"];
@@ -159,10 +161,14 @@ function generateRNModuleSpec(moduleJson) {
     }
   });
   if (Object.keys(rnModulesJson).length > 0) {
-    generateElm(rnModulesJson);
-    generateRNModuleSpec(rnModulesJson);
-    exec("elm-format --yes " + elmModulesDir, function(error, stdout, stderr) {
-      console.log(stdout);
+    rimraf(elmModulesDir, {}, function() {
+      fs.mkdir(elmModulesDir, function() {
+        generateElm(rnModulesJson);
+        generateRNModuleSpec(rnModulesJson);
+        exec("elm-format --yes " + elmModulesDir, function(error, stdout, stderr) {
+          console.log(stdout);
+        });
+      });
     });
   }
 })();
