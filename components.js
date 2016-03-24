@@ -3,7 +3,16 @@
 (function(){
   var reactDocs = require('react-docgen');
   var fs = require("fs");
+  var ejs = require("ejs");
   var prefix = "node_modules/react-native/Libraries/Components/";
+
+  var ElmTransformer = {
+    module: function(name, content) {
+      var template = fs.readFileSync("templates/module.ejs", 'utf8');
+      return ejs.render(template, { name: name, content: content });
+    }
+  }
+
   var componentFiles = [
     // "DatePicker/DatePicker.js",
     // "Intent/Intent.js",
@@ -34,22 +43,22 @@
     "Touchable/Touchable.js",
     "View/View.js"
   ];
-  var components = {};
   componentFiles.forEach(function(file) {
     var source = fs.readFileSync(prefix + file, 'utf8');
     var componentName = file
       .replace(/^([^\/]*\/|)/, "")
       .replace("IOS.ios.js", "")
-      .replace("Android.android.js", "")
+      .replace("Android.android.js", "");
     try {
-      components[componentName] = reactDocs.parse(source);
+      var json = reactDocs.parse(source);
+      var elmComponent = ElmTransformer.module(componentName, "");
+      fs.writeFileSync(
+        "components/" + componentName + ".elm",
+        elmComponent,
+        "utf8"
+      );
     } catch (e) {
       console.log("Definitions are missing for: " + file);
     }
   });
-  fs.writeFileSync(
-    "components.json",
-    JSON.stringify(components, null, 2),
-    "utf8"
-  );
 })();
