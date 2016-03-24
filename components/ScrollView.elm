@@ -30,16 +30,16 @@ horizontal val =
 
 type ScrollViewIndicatorStyle
   = ScrollViewIndicatorStyleDefault
-| ScrollViewIndicatorStyle"black"
-| ScrollViewIndicatorStyleWhite
+  | ScrollViewIndicatorStyle"black"
+  | ScrollViewIndicatorStyleWhite
 
 indicatorStyle : ScrollViewIndicatorStyle -> Property
 indicatorStyle val =
   let
     stringValue = case indicatorStyle of
       ScrollViewIndicatorStyleDefault -> "default"
-ScrollViewIndicatorStyle"black" -> ""black""
-ScrollViewIndicatorStyleWhite -> "white"
+      ScrollViewIndicatorStyle"black" -> ""black""
+      ScrollViewIndicatorStyleWhite -> "white"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "indicatorStyle" jsonValue
@@ -54,16 +54,16 @@ canCancelContentTouches val =
 
 type ScrollViewKeyboardDismissMode
   = ScrollViewKeyboardDismissModeNone
-| ScrollViewKeyboardDismissMode"interactive"
-| ScrollViewKeyboardDismissModeOnDrag
+  | ScrollViewKeyboardDismissMode"interactive"
+  | ScrollViewKeyboardDismissModeOnDrag
 
 keyboardDismissMode : ScrollViewKeyboardDismissMode -> Property
 keyboardDismissMode val =
   let
     stringValue = case keyboardDismissMode of
       ScrollViewKeyboardDismissModeNone -> "none"
-ScrollViewKeyboardDismissMode"interactive" -> ""interactive""
-ScrollViewKeyboardDismissModeOnDrag -> "on-drag"
+      ScrollViewKeyboardDismissMode"interactive" -> ""interactive""
+      ScrollViewKeyboardDismissModeOnDrag -> "on-drag"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "keyboardDismissMode" jsonValue
@@ -114,16 +114,16 @@ snapToInterval val =
 
 type ScrollViewSnapToAlignment
   = ScrollViewSnapToAlignmentStart
-| ScrollViewSnapToAlignment"center"
-| ScrollViewSnapToAlignmentEnd
+  | ScrollViewSnapToAlignment"center"
+  | ScrollViewSnapToAlignmentEnd
 
 snapToAlignment : ScrollViewSnapToAlignment -> Property
 snapToAlignment val =
   let
     stringValue = case snapToAlignment of
       ScrollViewSnapToAlignmentStart -> "start"
-ScrollViewSnapToAlignment"center" -> ""center""
-ScrollViewSnapToAlignmentEnd -> "end"
+      ScrollViewSnapToAlignment"center" -> ""center""
+      ScrollViewSnapToAlignmentEnd -> "end"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "snapToAlignment" jsonValue

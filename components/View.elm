@@ -10,34 +10,34 @@ accessibilityLabel val =
 
 type ViewAccessibilityLiveRegion
   = ViewAccessibilityLiveRegionNone
-| ViewAccessibilityLiveRegionPolite
-| ViewAccessibilityLiveRegionAssertive
+  | ViewAccessibilityLiveRegionPolite
+  | ViewAccessibilityLiveRegionAssertive
 
 accessibilityLiveRegion : ViewAccessibilityLiveRegion -> Property
 accessibilityLiveRegion val =
   let
     stringValue = case accessibilityLiveRegion of
       ViewAccessibilityLiveRegionNone -> "none"
-ViewAccessibilityLiveRegionPolite -> "polite"
-ViewAccessibilityLiveRegionAssertive -> "assertive"
+      ViewAccessibilityLiveRegionPolite -> "polite"
+      ViewAccessibilityLiveRegionAssertive -> "assertive"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "accessibilityLiveRegion" jsonValue
 
 type ViewImportantForAccessibility
   = ViewImportantForAccessibilityAuto
-| ViewImportantForAccessibilityYes
-| ViewImportantForAccessibilityNo
-| ViewImportantForAccessibilityNoHideDescendants
+  | ViewImportantForAccessibilityYes
+  | ViewImportantForAccessibilityNo
+  | ViewImportantForAccessibilityNoHideDescendants
 
 importantForAccessibility : ViewImportantForAccessibility -> Property
 importantForAccessibility val =
   let
     stringValue = case importantForAccessibility of
       ViewImportantForAccessibilityAuto -> "auto"
-ViewImportantForAccessibilityYes -> "yes"
-ViewImportantForAccessibilityNo -> "no"
-ViewImportantForAccessibilityNoHideDescendants -> "no-hide-descendants"
+      ViewImportantForAccessibilityYes -> "yes"
+      ViewImportantForAccessibilityNo -> "no"
+      ViewImportantForAccessibilityNoHideDescendants -> "no-hide-descendants"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "importantForAccessibility" jsonValue
@@ -48,18 +48,18 @@ testID val =
 
 type ViewPointerEvents
   = ViewPointerEventsBoxNone
-| ViewPointerEventsNone
-| ViewPointerEventsBoxOnly
-| ViewPointerEventsAuto
+  | ViewPointerEventsNone
+  | ViewPointerEventsBoxOnly
+  | ViewPointerEventsAuto
 
 pointerEvents : ViewPointerEvents -> Property
 pointerEvents val =
   let
     stringValue = case pointerEvents of
       ViewPointerEventsBoxNone -> "box-none"
-ViewPointerEventsNone -> "none"
-ViewPointerEventsBoxOnly -> "box-only"
-ViewPointerEventsAuto -> "auto"
+      ViewPointerEventsNone -> "none"
+      ViewPointerEventsBoxOnly -> "box-only"
+      ViewPointerEventsAuto -> "auto"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "pointerEvents" jsonValue

@@ -6,6 +6,7 @@
   const fs = require("fs");
   const _ = require("lodash");
   const ElmTransformer = require("./elm-transformer");
+  const exec = require("child_process").exec;
 
   var elmTransformer = new ElmTransformer();
 
@@ -15,11 +16,11 @@
     // "Intent/Intent.js",
     // "Navigation/Navigation.js",
     // "ViewPager/ViewPager.js",
-    // "WebView/WebView.js"
+    // "WebView/WebView.js",
+    // "DrawerAndroid/DrawerLayoutAndroid.android.js",
     "ActivityIndicatorIOS/ActivityIndicatorIOS.ios.js",
     "Clipboard/Clipboard.js",
     "DatePickerAndroid/DatePickerAndroid.android.js",
-    "DrawerAndroid/DrawerLayoutAndroid.android.js",
     "MapView/MapView.js",
     "Picker/Picker.js",
     "ProgressBarAndroid/ProgressBarAndroid.android.js",
@@ -103,5 +104,8 @@
       JSON.stringify(componentsJSON, null, 2),
       "utf8"
     );
+    exec("elm-format --yes components", function(error, stdout, stderr) {
+      console.log(stdout);
+    });
   });
 })();
