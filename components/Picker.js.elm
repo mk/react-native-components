@@ -1,2 +1,0 @@
-module Picker.js where
-  

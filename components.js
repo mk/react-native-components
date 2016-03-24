@@ -10,6 +10,10 @@
     module: function(name, content) {
       var template = fs.readFileSync("templates/module.ejs", 'utf8');
       return ejs.render(template, { name: name, content: content });
+    },
+    property: function(name, type, values) {
+      var template = fs.readFileSync("templates/property.ejs", 'utf8');
+      return ejs.render(template, { name: name, type: type, values: values });
     }
   }
 
@@ -43,22 +47,52 @@
     "Touchable/Touchable.js",
     "View/View.js"
   ];
+  var componentsJSON = {};
   componentFiles.forEach(function(file) {
     var source = fs.readFileSync(prefix + file, 'utf8');
     var componentName = file
       .replace(/^([^\/]*\/|)/, "")
       .replace("IOS.ios.js", "")
-      .replace("Android.android.js", "");
+      .replace("Android.android.js", "")
+      .replace(".js", "");
     try {
       var json = reactDocs.parse(source);
-      var elmComponent = ElmTransformer.module(componentName, "");
+      componentsJSON[componentName] = json;
+
+      var propNames = Object.keys(json.props);
+      var allowedPropTypes = ["bool", "string", "number"];
+      var elmPropTypes = {
+        "bool": { type: "Bool", encoder: "bool" },
+        "string": { type: "String", encoder: "string" },
+        "number": { type: "Float", encoder: "float" }
+      };
+
+      var elmModuleContent = propNames.map(function(propName) {
+        if (allowedPropTypes.indexOf(json.props[propName].type.name) !== -1) {
+          var type = elmPropTypes[json.props[propName].type.name];
+          return ElmTransformer.property(
+            propName,
+            type,
+            json.props[propName].value
+          );
+        }
+      });
+      var elmComponent = ElmTransformer.module(
+        componentName,
+        elmModuleContent.join("\n\n")
+      );
       fs.writeFileSync(
         "components/" + componentName + ".elm",
         elmComponent,
         "utf8"
       );
     } catch (e) {
-      console.log("Definitions are missing for: " + file);
+      console.log(e);
     }
+    fs.writeFileSync(
+      "components.json",
+      JSON.stringify(componentsJSON, null, 2),
+      "utf8"
+    );
   });
 })();

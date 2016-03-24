@@ -1,2 +1,0 @@
-module MapView.js where
-  
