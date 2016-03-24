@@ -47,8 +47,7 @@
   ];
   const funcPropertyArgs = {
     "onChangeText": { name: "text", type: "string" },
-    "onValueChange": { name: "value", type: "string" },
-    "onChange": { name: "event", type: "object" }
+    "onValueChange": { name: "value", type: "string" }
   }
   var rnModulesJSON = {};
   var enumValues = function(jsonValues) {
