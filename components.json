@@ -1370,6 +1370,71 @@
       "View"
     ]
   },
+  "Text": {
+    "description": "A React component for displaying text which supports nesting,\nstyling, and touch handling.  In the following example, the nested title and\nbody text will inherit the `fontFamily` from `styles.baseText`, but the title\nprovides its own additional styles.  The title and body will stack on top of\neach other on account of the literal newlines:\n\n```\nrenderText: function() {\n  return (\n    <Text style={styles.baseText}>\n      <Text style={styles.titleText} onPress={this.onPressTitle}>\n        {this.state.titleText + '\\n\\n'}\n      </Text>\n      <Text numberOfLines={5}>\n        {this.state.bodyText}\n      </Text>\n    </Text>\n  );\n},\n...\nvar styles = StyleSheet.create({\n  baseText: {\n    fontFamily: 'Cochin',\n  },\n  titleText: {\n    fontSize: 20,\n    fontWeight: 'bold',\n  },\n};\n```",
+    "props": {
+      "numberOfLines": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": "Used to truncate the text with an ellipsis after computing the text\nlayout, including line wrapping, such that the total number of lines\ndoes not exceed this number."
+      },
+      "onLayout": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "Invoked on mount and layout changes with\n\n  `{nativeEvent: {layout: {x, y, width, height}}}`"
+      },
+      "onPress": {
+        "type": {
+          "name": "func"
+        },
+        "required": false,
+        "description": "This function is called on press."
+      },
+      "suppressHighlighting": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "When true, no visual change is made when text is pressed down. By\ndefault, a gray oval highlights the text on press down.\n@platform ios"
+      },
+      "style": {
+        "type": {
+          "name": "custom",
+          "raw": "stylePropType"
+        },
+        "required": false,
+        "description": ""
+      },
+      "testID": {
+        "type": {
+          "name": "string"
+        },
+        "required": false,
+        "description": "Used to locate this view in end-to-end tests."
+      },
+      "allowFontScaling": {
+        "type": {
+          "name": "bool"
+        },
+        "required": false,
+        "description": "Specifies should fonts scale to respect Text Size accessibility setting on iOS.\n@platform ios",
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      },
+      "accessible": {
+        "defaultValue": {
+          "value": "true",
+          "computed": false
+        }
+      }
+    }
+  },
   "TextInput": {
     "description": "A foundational component for inputting text into the app via a\nkeyboard. Props provide configurability for several features, such as\nauto-correction, auto-capitalization, placeholder text, and different keyboard\ntypes, such as a numeric keypad.\n\nThe simplest use case is to plop down a `TextInput` and subscribe to the\n`onChangeText` events to read the user input. There are also other events,\nsuch as `onSubmitEditing` and `onFocus` that can be subscribed to. A simple\nexample:\n\n```\n  <TextInput\n    style={{height: 40, borderColor: 'gray', borderWidth: 1}}\n    onChangeText={(text) => this.setState({text})}\n    value={this.state.text}\n  />\n```\n\nNote that some props are only available with `multiline={true/false}`:",
     "props": {

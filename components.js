@@ -10,45 +10,51 @@
 
   var elmTransformer = new ElmTransformer();
 
-  const componentPath = "node_modules/react-native/Libraries/Components/";
-  const componentFiles = [
+  const rnLibPath = "node_modules/react-native/Libraries/";
+  const rnModulePathPrefixes = ["Components", "Text"];
+  const rnModuleFiles = [
     // "DatePicker/DatePicker.js",
     // "Intent/Intent.js",
     // "Navigation/Navigation.js",
     // "ViewPager/ViewPager.js",
     // "WebView/WebView.js",
     // "DrawerAndroid/DrawerLayoutAndroid.android.js",
-    "ActivityIndicatorIOS/ActivityIndicatorIOS.ios.js",
-    "Clipboard/Clipboard.js",
-    "DatePickerAndroid/DatePickerAndroid.android.js",
-    "MapView/MapView.js",
-    "Picker/Picker.js",
-    "ProgressBarAndroid/ProgressBarAndroid.android.js",
-    "ProgressViewIOS/ProgressViewIOS.ios.js",
-    "RefreshControl/RefreshControl.js",
-    "ScrollView/ScrollView.js",
-    "SegmentedControlIOS/SegmentedControlIOS.ios.js",
-    "SliderIOS/SliderIOS.ios.js",
-    "StatusBar/StatusBar.js",
-    "Switch/Switch.js",
-    "SwitchAndroid/SwitchAndroid.android.js",
-    "SwitchIOS/SwitchIOS.ios.js",
-    "TabBarIOS/TabBarIOS.ios.js",
-    "TextInput/TextInput.js",
-    "TimePickerAndroid/TimePickerAndroid.android.js",
-    "ToastAndroid/ToastAndroid.android.js",
-    "ToolbarAndroid/ToolbarAndroid.android.js",
-    "Touchable/Touchable.js",
-    "View/View.js"
+    "Components/ActivityIndicatorIOS/ActivityIndicatorIOS.ios.js",
+    "Components/Clipboard/Clipboard.js",
+    "Components/DatePickerAndroid/DatePickerAndroid.android.js",
+    "Components/MapView/MapView.js",
+    "Components/Picker/Picker.js",
+    "Components/ProgressBarAndroid/ProgressBarAndroid.android.js",
+    "Components/ProgressViewIOS/ProgressViewIOS.ios.js",
+    "Components/RefreshControl/RefreshControl.js",
+    "Components/ScrollView/ScrollView.js",
+    "Components/SegmentedControlIOS/SegmentedControlIOS.ios.js",
+    "Components/SliderIOS/SliderIOS.ios.js",
+    "Components/StatusBar/StatusBar.js",
+    "Components/Switch/Switch.js",
+    "Components/SwitchAndroid/SwitchAndroid.android.js",
+    "Components/SwitchIOS/SwitchIOS.ios.js",
+    "Components/TabBarIOS/TabBarIOS.ios.js",
+    "Components/ActivityIndicatorIOS/ActivityIndicatorIOS.ios.js",
+    "Text/Text.js",
+    "Components/TextInput/TextInput.js",
+    "Components/TimePickerAndroid/TimePickerAndroid.android.js",
+    "Components/ToastAndroid/ToastAndroid.android.js",
+    "Components/ToolbarAndroid/ToolbarAndroid.android.js",
+    "Components/Touchable/Touchable.js",
+    "Components/View/View.js"
   ];
-  var componentsJSON = {};
+  var rnModulesJSON = {};
   var enumValues = function(jsonValues) {
     return jsonValues.map(function(val) {
       return val.value.replace(/'/g, "").replace(/"/g, "");
     });
   }
-  componentFiles.forEach(function(file) {
-    var source = fs.readFileSync(componentPath + file, 'utf8');
+  rnModuleFiles.forEach(function(file) {
+    var source = fs.readFileSync(rnLibPath + file, 'utf8');
+    rnModulePathPrefixes.forEach(function(prefix) {
+      file = file.replace(prefix + "/", "");
+    });
     var moduleName = file
       .replace(/^([^\/]*\/|)/, "")
       .replace("IOS.ios.js", "")
@@ -56,7 +62,7 @@
       .replace(".js", "");
     try {
       var json = reactDocs.parse(source);
-      componentsJSON[moduleName] = json;
+      rnModulesJSON[moduleName] = json;
 
       var propNames = Object.keys(json.props);
       var allowedPropTypes = ["bool", "string", "number", "enum"];
@@ -100,10 +106,10 @@
       console.log(e);
     }
   });
-  if (Object.keys(componentsJSON).length > 0) {
+  if (Object.keys(rnModulesJSON).length > 0) {
     fs.writeFileSync(
       "components.json",
-      JSON.stringify(componentsJSON, null, 2),
+      JSON.stringify(rnModulesJSON, null, 2),
       "utf8"
     );
   }
