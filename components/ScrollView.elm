@@ -29,9 +29,9 @@ horizontal val =
   JsonProperty "horizontal" (Json.Encode.bool val)
 
 type ScrollViewIndicatorStyle
-  = ScrollViewDefault
-| ScrollView"black"
-| ScrollViewWhite
+  = ScrollViewIndicatorStyleDefault
+| ScrollViewIndicatorStyle"black"
+| ScrollViewIndicatorStyleWhite
 
 indicatorStyle : ScrollViewIndicatorStyle -> Property
 indicatorStyle val =
@@ -53,9 +53,9 @@ canCancelContentTouches val =
   JsonProperty "canCancelContentTouches" (Json.Encode.bool val)
 
 type ScrollViewKeyboardDismissMode
-  = ScrollViewNone
-| ScrollView"interactive"
-| ScrollViewOn-drag
+  = ScrollViewKeyboardDismissModeNone
+| ScrollViewKeyboardDismissMode"interactive"
+| ScrollViewKeyboardDismissModeOnDrag
 
 keyboardDismissMode : ScrollViewKeyboardDismissMode -> Property
 keyboardDismissMode val =
@@ -63,7 +63,7 @@ keyboardDismissMode val =
     stringValue = case keyboardDismissMode of
       ScrollViewKeyboardDismissModeNone -> "none"
 ScrollViewKeyboardDismissMode"interactive" -> ""interactive""
-ScrollViewKeyboardDismissModeOn-drag -> "on-drag"
+ScrollViewKeyboardDismissModeOnDrag -> "on-drag"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "keyboardDismissMode" jsonValue
@@ -113,9 +113,9 @@ snapToInterval val =
   JsonProperty "snapToInterval" (Json.Encode.float val)
 
 type ScrollViewSnapToAlignment
-  = ScrollViewStart
-| ScrollView"center"
-| ScrollViewEnd
+  = ScrollViewSnapToAlignmentStart
+| ScrollViewSnapToAlignment"center"
+| ScrollViewSnapToAlignmentEnd
 
 snapToAlignment : ScrollViewSnapToAlignment -> Property
 snapToAlignment val =

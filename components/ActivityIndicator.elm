@@ -13,8 +13,8 @@ hidesWhenStopped val =
   JsonProperty "hidesWhenStopped" (Json.Encode.bool val)
 
 type ActivityIndicatorSize
-  = ActivityIndicatorSmall
-| ActivityIndicatorLarge
+  = ActivityIndicatorSizeSmall
+| ActivityIndicatorSizeLarge
 
 size : ActivityIndicatorSize -> Property
 size val =

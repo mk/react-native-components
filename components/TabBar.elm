@@ -1,5 +1,4 @@
-module TabBar (..) where
-
+module TabBar where
 
 translucent : Bool -> Property
 translucent val =

@@ -5,8 +5,8 @@ enabled val =
   JsonProperty "enabled" (Json.Encode.bool val)
 
 type PickerMode
-  = PickerDialog
-| PickerDropdown
+  = PickerModeDialog
+| PickerModeDropdown
 
 mode : PickerMode -> Property
 mode val =

@@ -1,35 +1,28 @@
-module Slider (..) where
-
+module Slider where
 
 value : Float -> Property
 value val =
   JsonProperty "value" (Json.Encode.float val)
 
-
 step : Float -> Property
 step val =
   JsonProperty "step" (Json.Encode.float val)
-
 
 minimumValue : Float -> Property
 minimumValue val =
   JsonProperty "minimumValue" (Json.Encode.float val)
 
-
 maximumValue : Float -> Property
 maximumValue val =
   JsonProperty "maximumValue" (Json.Encode.float val)
-
 
 minimumTrackTintColor : String -> Property
 minimumTrackTintColor val =
   JsonProperty "minimumTrackTintColor" (Json.Encode.string val)
 
-
 maximumTrackTintColor : String -> Property
 maximumTrackTintColor val =
   JsonProperty "maximumTrackTintColor" (Json.Encode.string val)
-
 
 disabled : Bool -> Property
 disabled val =

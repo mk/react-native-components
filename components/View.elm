@@ -1,5 +1,6 @@
 module View where
-  accessible : Bool -> Property
+
+accessible : Bool -> Property
 accessible val =
   JsonProperty "accessible" (Json.Encode.bool val)
 
@@ -8,9 +9,9 @@ accessibilityLabel val =
   JsonProperty "accessibilityLabel" (Json.Encode.string val)
 
 type ViewAccessibilityLiveRegion
-  = ViewNone
-| ViewPolite
-| ViewAssertive
+  = ViewAccessibilityLiveRegionNone
+| ViewAccessibilityLiveRegionPolite
+| ViewAccessibilityLiveRegionAssertive
 
 accessibilityLiveRegion : ViewAccessibilityLiveRegion -> Property
 accessibilityLiveRegion val =
@@ -24,10 +25,10 @@ ViewAccessibilityLiveRegionAssertive -> "assertive"
     JsonProperty "accessibilityLiveRegion" jsonValue
 
 type ViewImportantForAccessibility
-  = ViewAuto
-| ViewYes
-| ViewNo
-| ViewNo-hide-descendants
+  = ViewImportantForAccessibilityAuto
+| ViewImportantForAccessibilityYes
+| ViewImportantForAccessibilityNo
+| ViewImportantForAccessibilityNoHideDescendants
 
 importantForAccessibility : ViewImportantForAccessibility -> Property
 importantForAccessibility val =
@@ -36,7 +37,7 @@ importantForAccessibility val =
       ViewImportantForAccessibilityAuto -> "auto"
 ViewImportantForAccessibilityYes -> "yes"
 ViewImportantForAccessibilityNo -> "no"
-ViewImportantForAccessibilityNo-hide-descendants -> "no-hide-descendants"
+ViewImportantForAccessibilityNoHideDescendants -> "no-hide-descendants"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "importantForAccessibility" jsonValue
@@ -46,18 +47,18 @@ testID val =
   JsonProperty "testID" (Json.Encode.string val)
 
 type ViewPointerEvents
-  = ViewBox-none
-| ViewNone
-| ViewBox-only
-| ViewAuto
+  = ViewPointerEventsBoxNone
+| ViewPointerEventsNone
+| ViewPointerEventsBoxOnly
+| ViewPointerEventsAuto
 
 pointerEvents : ViewPointerEvents -> Property
 pointerEvents val =
   let
     stringValue = case pointerEvents of
-      ViewPointerEventsBox-none -> "box-none"
+      ViewPointerEventsBoxNone -> "box-none"
 ViewPointerEventsNone -> "none"
-ViewPointerEventsBox-only -> "box-only"
+ViewPointerEventsBoxOnly -> "box-only"
 ViewPointerEventsAuto -> "auto"
     jsonValue = Json.Encode.string stringValue
   in

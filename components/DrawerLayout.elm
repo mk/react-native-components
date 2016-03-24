@@ -1,22 +1,22 @@
 module DrawerLayout where
 
 type DrawerLayoutKeyboardDismissMode
-  = DrawerLayoutNone
-| DrawerLayout"on-drag"
+  = DrawerLayoutKeyboardDismissModeNone
+| DrawerLayoutKeyboardDismissMode"onDrag"
 
 keyboardDismissMode : DrawerLayoutKeyboardDismissMode -> Property
 keyboardDismissMode val =
   let
     stringValue = case keyboardDismissMode of
       DrawerLayoutKeyboardDismissModeNone -> "none"
-DrawerLayoutKeyboardDismissMode"on-drag" -> ""on-drag""
+DrawerLayoutKeyboardDismissMode"onDrag" -> ""on-drag""
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "keyboardDismissMode" jsonValue
 
 type DrawerLayoutDrawerPosition
-  = DrawerLayoutDrawerConsts.DrawerPosition.Left
-| DrawerLayoutDrawerConsts.DrawerPosition.Right
+  = DrawerLayoutDrawerPositionDrawerConsts.DrawerPosition.Left
+| DrawerLayoutDrawerPositionDrawerConsts.DrawerPosition.Right
 
 drawerPosition : DrawerLayoutDrawerPosition -> Property
 drawerPosition val =
@@ -33,17 +33,17 @@ drawerWidth val =
   JsonProperty "drawerWidth" (Json.Encode.float val)
 
 type DrawerLayoutDrawerLockMode
-  = DrawerLayoutUnlocked
-| DrawerLayoutLocked-closed
-| DrawerLayoutLocked-open
+  = DrawerLayoutDrawerLockModeUnlocked
+| DrawerLayoutDrawerLockModeLockedClosed
+| DrawerLayoutDrawerLockModeLockedOpen
 
 drawerLockMode : DrawerLayoutDrawerLockMode -> Property
 drawerLockMode val =
   let
     stringValue = case drawerLockMode of
       DrawerLayoutDrawerLockModeUnlocked -> "unlocked"
-DrawerLayoutDrawerLockModeLocked-closed -> "locked-closed"
-DrawerLayoutDrawerLockModeLocked-open -> "locked-open"
+DrawerLayoutDrawerLockModeLockedClosed -> "locked-closed"
+DrawerLayoutDrawerLockModeLockedOpen -> "locked-open"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "drawerLockMode" jsonValue

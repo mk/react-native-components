@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-(function(){
+(function() {
   var reactDocs = require('react-docgen');
   var fs = require("fs");
   var ejs = require("ejs");
@@ -22,12 +22,17 @@
     enumProperty : function(propName, moduleName, values) {
       var template = fs.readFileSync("templates/enum-property.ejs", 'utf8');
       var unionTypeName = capitalize(moduleName) + capitalize(propName);
+      var unionTypeValue = function(value) {
+        return unionTypeName + value.split("-").map(function(val) {
+          return capitalize(val);
+        }).join("");
+      }
       var unionTypeValues = values.map(function(value) {
-        return unionTypeName + capitalize(value);
+        return unionTypeValue(value);
       }).join("\n| ");
       var valueFuncName = decapitalize(moduleName) + capitalize(propName) + "Value";
       var valueToStringCaseBody = values.map(function(value) {
-        return unionTypeName + capitalize(value) + " -> " + '"' + value + '"';
+        return unionTypeValue(value) + " -> " + '"' + value + '"';
       }).join("\n");
 
       return ejs.render(template, {

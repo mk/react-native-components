@@ -13,15 +13,15 @@ translucent val =
   JsonProperty "translucent" (Json.Encode.bool val)
 
 type StatusBarBarStyle
-  = StatusBarDefault
-| StatusBarLight-content
+  = StatusBarBarStyleDefault
+| StatusBarBarStyleLightContent
 
 barStyle : StatusBarBarStyle -> Property
 barStyle val =
   let
     stringValue = case barStyle of
       StatusBarBarStyleDefault -> "default"
-StatusBarBarStyleLight-content -> "light-content"
+StatusBarBarStyleLightContent -> "light-content"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "barStyle" jsonValue
@@ -31,8 +31,8 @@ networkActivityIndicatorVisible val =
   JsonProperty "networkActivityIndicatorVisible" (Json.Encode.bool val)
 
 type StatusBarShowHideTransition
-  = StatusBarFade
-| StatusBarSlide
+  = StatusBarShowHideTransitionFade
+| StatusBarShowHideTransitionSlide
 
 showHideTransition : StatusBarShowHideTransition -> Property
 showHideTransition val =

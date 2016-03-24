@@ -33,9 +33,9 @@ scrollEnabled val =
   JsonProperty "scrollEnabled" (Json.Encode.bool val)
 
 type MapViewMapType
-  = MapViewStandard
-| MapViewSatellite
-| MapViewHybrid
+  = MapViewMapTypeStandard
+| MapViewMapTypeSatellite
+| MapViewMapTypeHybrid
 
 mapType : MapViewMapType -> Property
 mapType val =

@@ -1,8 +1,8 @@
 module ProgressView where
 
 type ProgressViewProgressViewStyle
-  = ProgressViewDefault
-| ProgressViewBar
+  = ProgressViewProgressViewStyleDefault
+| ProgressViewProgressViewStyleBar
 
 progressViewStyle : ProgressViewProgressViewStyle -> Property
 progressViewStyle val =

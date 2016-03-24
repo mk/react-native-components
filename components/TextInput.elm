@@ -1,10 +1,10 @@
 module TextInput where
 
 type TextInputAutoCapitalize
-  = TextInputNone
-| TextInputSentences
-| TextInputWords
-| TextInputCharacters
+  = TextInputAutoCapitalizeNone
+| TextInputAutoCapitalizeSentences
+| TextInputAutoCapitalizeWords
+| TextInputAutoCapitalizeCharacters
 
 autoCapitalize : TextInputAutoCapitalize -> Property
 autoCapitalize val =
@@ -31,43 +31,43 @@ editable val =
   JsonProperty "editable" (Json.Encode.bool val)
 
 type TextInputKeyboardType
-  = TextInput"default"
-| TextInputEmail-address
-| TextInputNumeric
-| TextInputPhone-pad
-| TextInput"ascii-capable"
-| TextInputNumbers-and-punctuation
-| TextInputUrl
-| TextInputNumber-pad
-| TextInputName-phone-pad
-| TextInputDecimal-pad
-| TextInputTwitter
-| TextInputWeb-search
+  = TextInputKeyboardType"default"
+| TextInputKeyboardTypeEmailAddress
+| TextInputKeyboardTypeNumeric
+| TextInputKeyboardTypePhonePad
+| TextInputKeyboardType"asciiCapable"
+| TextInputKeyboardTypeNumbersAndPunctuation
+| TextInputKeyboardTypeUrl
+| TextInputKeyboardTypeNumberPad
+| TextInputKeyboardTypeNamePhonePad
+| TextInputKeyboardTypeDecimalPad
+| TextInputKeyboardTypeTwitter
+| TextInputKeyboardTypeWebSearch
 
 keyboardType : TextInputKeyboardType -> Property
 keyboardType val =
   let
     stringValue = case keyboardType of
       TextInputKeyboardType"default" -> ""default""
-TextInputKeyboardTypeEmail-address -> "email-address"
+TextInputKeyboardTypeEmailAddress -> "email-address"
 TextInputKeyboardTypeNumeric -> "numeric"
-TextInputKeyboardTypePhone-pad -> "phone-pad"
-TextInputKeyboardType"ascii-capable" -> ""ascii-capable""
-TextInputKeyboardTypeNumbers-and-punctuation -> "numbers-and-punctuation"
+TextInputKeyboardTypePhonePad -> "phone-pad"
+TextInputKeyboardType"asciiCapable" -> ""ascii-capable""
+TextInputKeyboardTypeNumbersAndPunctuation -> "numbers-and-punctuation"
 TextInputKeyboardTypeUrl -> "url"
-TextInputKeyboardTypeNumber-pad -> "number-pad"
-TextInputKeyboardTypeName-phone-pad -> "name-phone-pad"
-TextInputKeyboardTypeDecimal-pad -> "decimal-pad"
+TextInputKeyboardTypeNumberPad -> "number-pad"
+TextInputKeyboardTypeNamePhonePad -> "name-phone-pad"
+TextInputKeyboardTypeDecimalPad -> "decimal-pad"
 TextInputKeyboardTypeTwitter -> "twitter"
-TextInputKeyboardTypeWeb-search -> "web-search"
+TextInputKeyboardTypeWebSearch -> "web-search"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "keyboardType" jsonValue
 
 type TextInputKeyboardAppearance
-  = TextInputDefault
-| TextInputLight
-| TextInputDark
+  = TextInputKeyboardAppearanceDefault
+| TextInputKeyboardAppearanceLight
+| TextInputKeyboardAppearanceDark
 
 keyboardAppearance : TextInputKeyboardAppearance -> Property
 keyboardAppearance val =
@@ -81,17 +81,17 @@ TextInputKeyboardAppearanceDark -> "dark"
     JsonProperty "keyboardAppearance" jsonValue
 
 type TextInputReturnKeyType
-  = TextInputDefault
-| TextInputGo
-| TextInputGoogle
-| TextInputJoin
-| TextInputNext
-| TextInputRoute
-| TextInputSearch
-| TextInputSend
-| TextInputYahoo
-| TextInputDone
-| TextInputEmergency-call
+  = TextInputReturnKeyTypeDefault
+| TextInputReturnKeyTypeGo
+| TextInputReturnKeyTypeGoogle
+| TextInputReturnKeyTypeJoin
+| TextInputReturnKeyTypeNext
+| TextInputReturnKeyTypeRoute
+| TextInputReturnKeyTypeSearch
+| TextInputReturnKeyTypeSend
+| TextInputReturnKeyTypeYahoo
+| TextInputReturnKeyTypeDone
+| TextInputReturnKeyTypeEmergencyCall
 
 returnKeyType : TextInputReturnKeyType -> Property
 returnKeyType val =
@@ -107,7 +107,7 @@ TextInputReturnKeyTypeSearch -> "search"
 TextInputReturnKeyTypeSend -> "send"
 TextInputReturnKeyTypeYahoo -> "yahoo"
 TextInputReturnKeyTypeDone -> "done"
-TextInputReturnKeyTypeEmergency-call -> "emergency-call"
+TextInputReturnKeyTypeEmergencyCall -> "emergency-call"
     jsonValue = Json.Encode.string stringValue
   in
     JsonProperty "returnKeyType" jsonValue
@@ -153,18 +153,18 @@ defaultValue val =
   JsonProperty "defaultValue" (Json.Encode.string val)
 
 type TextInputClearButtonMode
-  = TextInputNever
-| TextInputWhile-editing
-| TextInputUnless-editing
-| TextInputAlways
+  = TextInputClearButtonModeNever
+| TextInputClearButtonModeWhileEditing
+| TextInputClearButtonModeUnlessEditing
+| TextInputClearButtonModeAlways
 
 clearButtonMode : TextInputClearButtonMode -> Property
 clearButtonMode val =
   let
     stringValue = case clearButtonMode of
       TextInputClearButtonModeNever -> "never"
-TextInputClearButtonModeWhile-editing -> "while-editing"
-TextInputClearButtonModeUnless-editing -> "unless-editing"
+TextInputClearButtonModeWhileEditing -> "while-editing"
+TextInputClearButtonModeUnlessEditing -> "unless-editing"
 TextInputClearButtonModeAlways -> "always"
     jsonValue = Json.Encode.string stringValue
   in
