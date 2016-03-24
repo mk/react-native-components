@@ -44,7 +44,7 @@
   var componentsJSON = {};
   var enumValues = function(jsonValues) {
     return jsonValues.map(function(val) {
-      return val.value.replace(/'/g, "");
+      return val.value.replace(/'/g, "").replace(/"/g, "");
     });
   }
   componentFiles.forEach(function(file) {
