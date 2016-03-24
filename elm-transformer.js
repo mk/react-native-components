@@ -8,14 +8,19 @@ const decapitalize = require("underscore.string/decapitalize");
 
 class ElmTransformer {
   constructor() {
-    this.moduleTemplate = fs.readFileSync("templates/module.ejs", 'utf8');
     this.propertyTemplate = fs.readFileSync("templates/property.ejs", 'utf8');
     this.enumPropertyTemplate = fs.readFileSync("templates/enum-property.ejs", 'utf8');
     this.funcPropertyTemplate = fs.readFileSync("templates/func-property.ejs", 'utf8');
+    this.elementTemplate = fs.readFileSync("templates/element.ejs", 'utf8');
   }
 
-  module(moduleName, content) {
-    return ejs.render(this.moduleTemplate, { moduleName: moduleName, content: content });
+  module(templateFile, content, moduleExports) {
+    var template = fs.readFileSync("templates/" + templateFile, 'utf8');
+    return ejs.render(template, { content: content, moduleExports: moduleExports });
+  }
+
+  element(elementName, elementFuncName) {
+    return ejs.render(this.elementTemplate, { elementName: elementName, elementFuncName: elementFuncName });
   }
 
   property(propName, propType) {
