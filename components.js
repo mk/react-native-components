@@ -7,7 +7,6 @@
   var _ = require("lodash");
   var capitalize = require("underscore.string/capitalize");
   var decapitalize = require("underscore.string/decapitalize");
-  var trim = require("underscore.string/trim");
 
   var prefix = "node_modules/react-native/Libraries/Components/";
 
