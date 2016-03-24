@@ -1,16 +1,16 @@
 #!/usr/bin/env node
+'use strict';
 
 (function() {
-  var reactDocs = require('react-docgen');
-  var fs = require("fs");
-  var _ = require("lodash");
-  var ElmTransformer = require("./elm-transformer");
+  const reactDocs = require('react-docgen');
+  const fs = require("fs");
+  const _ = require("lodash");
+  const ElmTransformer = require("./elm-transformer");
 
   var elmTransformer = new ElmTransformer();
 
-  var prefix = "node_modules/react-native/Libraries/Components/";
-
-  var componentFiles = [
+  const componentPath = "node_modules/react-native/Libraries/Components/";
+  const componentFiles = [
     // "DatePicker/DatePicker.js",
     // "Intent/Intent.js",
     // "Navigation/Navigation.js",
@@ -47,7 +47,7 @@
     });
   }
   componentFiles.forEach(function(file) {
-    var source = fs.readFileSync(prefix + file, 'utf8');
+    var source = fs.readFileSync(componentPath + file, 'utf8');
     var moduleName = file
       .replace(/^([^\/]*\/|)/, "")
       .replace("IOS.ios.js", "")

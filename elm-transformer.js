@@ -1,10 +1,10 @@
 'use strict';
 
-var fs = require("fs");
-var ejs = require("ejs");
-var _ = require("lodash");
-var capitalize = require("underscore.string/capitalize");
-var decapitalize = require("underscore.string/decapitalize");
+const fs = require("fs");
+const ejs = require("ejs");
+const _ = require("lodash");
+const capitalize = require("underscore.string/capitalize");
+const decapitalize = require("underscore.string/decapitalize");
 
 class ElmTransformer {
   constructor() {
