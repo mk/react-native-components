@@ -1,5 +1,6 @@
 module MapView where
-  showsUserLocation : Bool -> Property
+
+showsUserLocation : Bool -> Property
 showsUserLocation val =
   JsonProperty "showsUserLocation" (Json.Encode.bool val)
 

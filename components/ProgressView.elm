@@ -1,5 +1,6 @@
 module ProgressView where
-  type ProgressViewProgressViewStyle
+
+type ProgressViewProgressViewStyle
   = ProgressViewDefault
 | ProgressViewBar
 

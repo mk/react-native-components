@@ -1,5 +1,6 @@
 module TextInput where
-  type TextInputAutoCapitalize
+
+type TextInputAutoCapitalize
   = TextInputNone
 | TextInputSentences
 | TextInputWords

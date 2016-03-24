@@ -1,5 +1,6 @@
 module Picker where
-  enabled : Bool -> Property
+
+enabled : Bool -> Property
 enabled val =
   JsonProperty "enabled" (Json.Encode.bool val)
 

@@ -1,5 +1,6 @@
 module ScrollView where
-  automaticallyAdjustContentInsets : Bool -> Property
+
+automaticallyAdjustContentInsets : Bool -> Property
 automaticallyAdjustContentInsets val =
   JsonProperty "automaticallyAdjustContentInsets" (Json.Encode.bool val)
 

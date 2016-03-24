@@ -1,5 +1,6 @@
 module ActivityIndicator where
-  animating : Bool -> Property
+
+animating : Bool -> Property
 animating val =
   JsonProperty "animating" (Json.Encode.bool val)
 

@@ -1,5 +1,6 @@
 module DrawerLayout where
-  type DrawerLayoutKeyboardDismissMode
+
+type DrawerLayoutKeyboardDismissMode
   = DrawerLayoutNone
 | DrawerLayout"on-drag"
 

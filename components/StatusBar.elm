@@ -1,5 +1,6 @@
 module StatusBar where
-  hidden : Bool -> Property
+
+hidden : Bool -> Property
 hidden val =
   JsonProperty "hidden" (Json.Encode.bool val)
 
