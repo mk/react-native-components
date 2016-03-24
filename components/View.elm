@@ -7,9 +7,61 @@ accessibilityLabel : String -> Property
 accessibilityLabel val =
   JsonProperty "accessibilityLabel" (Json.Encode.string val)
 
+type ViewAccessibilityLiveRegion
+  = ViewNone
+| ViewPolite
+| ViewAssertive
+
+accessibilityLiveRegion : ViewAccessibilityLiveRegion -> Property
+accessibilityLiveRegion val =
+  let
+    stringValue = case accessibilityLiveRegion of
+      ViewAccessibilityLiveRegionNone -> "none"
+ViewAccessibilityLiveRegionPolite -> "polite"
+ViewAccessibilityLiveRegionAssertive -> "assertive"
+    jsonValue = Json.Encode.string stringValue
+  in
+    JsonProperty "accessibilityLiveRegion" jsonValue
+
+type ViewImportantForAccessibility
+  = ViewAuto
+| ViewYes
+| ViewNo
+| ViewNo-hide-descendants
+
+importantForAccessibility : ViewImportantForAccessibility -> Property
+importantForAccessibility val =
+  let
+    stringValue = case importantForAccessibility of
+      ViewImportantForAccessibilityAuto -> "auto"
+ViewImportantForAccessibilityYes -> "yes"
+ViewImportantForAccessibilityNo -> "no"
+ViewImportantForAccessibilityNo-hide-descendants -> "no-hide-descendants"
+    jsonValue = Json.Encode.string stringValue
+  in
+    JsonProperty "importantForAccessibility" jsonValue
+
 testID : String -> Property
 testID val =
   JsonProperty "testID" (Json.Encode.string val)
+
+type ViewPointerEvents
+  = ViewBox-none
+| ViewNone
+| ViewBox-only
+| ViewAuto
+
+pointerEvents : ViewPointerEvents -> Property
+pointerEvents val =
+  let
+    stringValue = case pointerEvents of
+      ViewPointerEventsBox-none -> "box-none"
+ViewPointerEventsNone -> "none"
+ViewPointerEventsBox-only -> "box-only"
+ViewPointerEventsAuto -> "auto"
+    jsonValue = Json.Encode.string stringValue
+  in
+    JsonProperty "pointerEvents" jsonValue
 
 removeClippedSubviews : Bool -> Property
 removeClippedSubviews val =

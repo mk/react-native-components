@@ -99,11 +99,14 @@
         var propType = json.props[propName].type.name;
         if (allowedPropTypes.indexOf(propType) !== -1) {
           if (propType === "enum") {
-            return ElmTransformer.enumProperty(
-              propName,
-              moduleName,
-              enumValues(json.props[propName].type.value)
-            );
+            var values = json.props[propName].type.value;
+            if (_.isArray(values)) { // Ignore non-Array enums for now
+              return ElmTransformer.enumProperty(
+                propName,
+                moduleName,
+                enumValues(json.props[propName].type.value)
+              );  
+            }
           } else {
             return ElmTransformer.property(
               propName,
