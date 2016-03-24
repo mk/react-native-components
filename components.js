@@ -10,6 +10,7 @@
 
   var elmTransformer = new ElmTransformer();
 
+  const elmModulesDir = "elm-modules/";
   const rnLibPath = "node_modules/react-native/Libraries/";
   const rnModulePathPrefixes = ["Components", "Text"];
   const rnModuleFiles = [
@@ -64,9 +65,9 @@
       var json = reactDocs.parse(source);
       rnModulesJSON[moduleName] = json;
 
-      var propNames = Object.keys(json.props);
-      var allowedPropTypes = ["bool", "string", "number", "enum"];
-      var elmPropTypes = {
+      let propNames = Object.keys(json.props);
+      const allowedPropTypes = ["bool", "string", "number", "enum"];
+      const elmPropTypes = {
         "bool": { type: "Bool", encoder: "bool" },
         "string": { type: "String", encoder: "string" },
         "number": { type: "Float", encoder: "float" }
@@ -74,10 +75,10 @@
 
       var elmModuleContent = propNames.map(function(propName) {
         if (json.props[propName].type) { // Ignore props without type for now
-          var propType = json.props[propName].type.name;
+          let propType = json.props[propName].type.name;
           if (allowedPropTypes.indexOf(propType) !== -1) {
             if (propType === "enum") {
-              var values = json.props[propName].type.value;
+              let values = json.props[propName].type.value;
               if (_.isArray(values)) { // Ignore non-Array enums for now
                 return elmTransformer.enumProperty(
                   propName,
@@ -95,13 +96,13 @@
         }
       });
       elmModuleContent = _.compact(elmModuleContent);
-      var elmComponent = elmTransformer.module(
+      let elmModule = elmTransformer.module(
         moduleName,
         elmModuleContent.join("\n\n")
       );
       fs.writeFileSync(
-        "components/" + moduleName + ".elm",
-        elmComponent,
+        elmModulesDir + moduleName + ".elm",
+        elmModule,
         "utf8"
       );
     } catch (e) {
@@ -110,12 +111,12 @@
   });
   if (Object.keys(rnModulesJSON).length > 0) {
     fs.writeFileSync(
-      "components.json",
+      "rn-modules.json",
       JSON.stringify(rnModulesJSON, null, 2),
       "utf8"
     );
   }
-  exec("elm-format --yes components", function(error, stdout, stderr) {
+  exec("elm-format --yes " + elmModulesDir, function(error, stdout, stderr) {
     console.log(stdout);
   });
 })();
