@@ -3,46 +3,12 @@
 (function() {
   var reactDocs = require('react-docgen');
   var fs = require("fs");
-  var ejs = require("ejs");
   var _ = require("lodash");
-  var capitalize = require("underscore.string/capitalize");
-  var decapitalize = require("underscore.string/decapitalize");
+  var ElmTransformer = require("./elm-transformer");
+
+  var elmTransformer = new ElmTransformer();
 
   var prefix = "node_modules/react-native/Libraries/Components/";
-
-  var ElmTransformer = {
-    module: function(moduleName, content) {
-      var template = fs.readFileSync("templates/module.ejs", 'utf8');
-      return ejs.render(template, { moduleName: moduleName, content: content });
-    },
-    property: function(propName, propType) {
-      var template = fs.readFileSync("templates/property.ejs", 'utf8');
-      return ejs.render(template, { propName: propName, propType: propType });
-    },
-    enumProperty : function(propName, moduleName, values) {
-      var template = fs.readFileSync("templates/enum-property.ejs", 'utf8');
-      var unionTypeName = capitalize(moduleName) + capitalize(propName);
-      var unionTypeValue = function(value) {
-        return unionTypeName + value.split("-").map(function(val) {
-          return capitalize(val);
-        }).join("");
-      }
-      var unionTypeValues = values.map(function(value) {
-        return unionTypeValue(value);
-      }).join("\n| ");
-      var valueFuncName = decapitalize(moduleName) + capitalize(propName) + "Value";
-      var valueToStringCaseBody = values.map(function(value) {
-        return unionTypeValue(value) + " -> " + '"' + value + '"';
-      }).join("\n");
-
-      return ejs.render(template, {
-        propName: propName,
-        unionTypeName: unionTypeName,
-        unionTypeValues: unionTypeValues,
-        valueToStringCaseBody: valueToStringCaseBody
-      });
-    }
-  }
 
   var componentFiles = [
     // "DatePicker/DatePicker.js",
@@ -105,14 +71,14 @@
           if (propType === "enum") {
             var values = json.props[propName].type.value;
             if (_.isArray(values)) { // Ignore non-Array enums for now
-              return ElmTransformer.enumProperty(
+              return elmTransformer.enumProperty(
                 propName,
                 moduleName,
                 enumValues(json.props[propName].type.value)
               );
             }
           } else {
-            return ElmTransformer.property(
+            return elmTransformer.property(
               propName,
               elmPropTypes[propType]
             );
@@ -120,7 +86,7 @@
         }
       });
       elmModuleContent = _.compact(elmModuleContent);
-      var elmComponent = ElmTransformer.module(
+      var elmComponent = elmTransformer.module(
         moduleName,
         elmModuleContent.join("\n\n")
       );
