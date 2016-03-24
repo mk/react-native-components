@@ -24,7 +24,7 @@
       var template = fs.readFileSync("templates/enum-property.ejs", 'utf8');
       var unionTypeName = capitalize(moduleName) + capitalize(propName);
       var unionTypeValues = values.map(function(value) {
-        return capitalize(moduleName) + capitalize(value);
+        return unionTypeName + capitalize(value);
       }).join("\n| ");
       var valueFuncName = decapitalize(moduleName) + capitalize(propName) + "Value";
       var valueToStringCaseBody = values.map(function(value) {
@@ -105,7 +105,7 @@
                 propName,
                 moduleName,
                 enumValues(json.props[propName].type.value)
-              );  
+              );
             }
           } else {
             return ElmTransformer.property(
