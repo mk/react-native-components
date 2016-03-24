@@ -73,22 +73,24 @@
       };
 
       var elmModuleContent = propNames.map(function(propName) {
-        var propType = json.props[propName].type.name;
-        if (allowedPropTypes.indexOf(propType) !== -1) {
-          if (propType === "enum") {
-            var values = json.props[propName].type.value;
-            if (_.isArray(values)) { // Ignore non-Array enums for now
-              return elmTransformer.enumProperty(
+        if (json.props[propName].type) { // Ignore props without type for now
+          var propType = json.props[propName].type.name;
+          if (allowedPropTypes.indexOf(propType) !== -1) {
+            if (propType === "enum") {
+              var values = json.props[propName].type.value;
+              if (_.isArray(values)) { // Ignore non-Array enums for now
+                return elmTransformer.enumProperty(
+                  propName,
+                  moduleName,
+                  enumValues(json.props[propName].type.value)
+                );
+              }
+            } else {
+              return elmTransformer.property(
                 propName,
-                moduleName,
-                enumValues(json.props[propName].type.value)
+                elmPropTypes[propType]
               );
             }
-          } else {
-            return elmTransformer.property(
-              propName,
-              elmPropTypes[propType]
-            );
           }
         }
       });
