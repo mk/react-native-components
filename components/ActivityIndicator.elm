@@ -1,15 +1,15 @@
 module ActivityIndicator where
-  animating :  -> Property
+  animating : Bool -> Property
 animating val =
-  JsonProperty "animating" (Json.Encode. val)
+  JsonProperty "animating" (Json.Encode.bool val)
 
-color :  -> Property
+color : String -> Property
 color val =
-  JsonProperty "color" (Json.Encode. val)
+  JsonProperty "color" (Json.Encode.string val)
 
-hidesWhenStopped :  -> Property
+hidesWhenStopped : Bool -> Property
 hidesWhenStopped val =
-  JsonProperty "hidesWhenStopped" (Json.Encode. val)
+  JsonProperty "hidesWhenStopped" (Json.Encode.bool val)
 
 type ActivityIndicatorSize
   = ActivityIndicatorSmall

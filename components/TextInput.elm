@@ -17,17 +17,17 @@ TextInputAutoCapitalizeCharacters -> "characters"
   in
     JsonProperty "autoCapitalize" jsonValue
 
-autoCorrect :  -> Property
+autoCorrect : Bool -> Property
 autoCorrect val =
-  JsonProperty "autoCorrect" (Json.Encode. val)
+  JsonProperty "autoCorrect" (Json.Encode.bool val)
 
-autoFocus :  -> Property
+autoFocus : Bool -> Property
 autoFocus val =
-  JsonProperty "autoFocus" (Json.Encode. val)
+  JsonProperty "autoFocus" (Json.Encode.bool val)
 
-editable :  -> Property
+editable : Bool -> Property
 editable val =
-  JsonProperty "editable" (Json.Encode. val)
+  JsonProperty "editable" (Json.Encode.bool val)
 
 type TextInputKeyboardType
   = TextInput"default"
@@ -111,45 +111,45 @@ TextInputReturnKeyTypeEmergency-call -> "emergency-call"
   in
     JsonProperty "returnKeyType" jsonValue
 
-maxLength :  -> Property
+maxLength : Float -> Property
 maxLength val =
-  JsonProperty "maxLength" (Json.Encode. val)
+  JsonProperty "maxLength" (Json.Encode.float val)
 
-numberOfLines :  -> Property
+numberOfLines : Float -> Property
 numberOfLines val =
-  JsonProperty "numberOfLines" (Json.Encode. val)
+  JsonProperty "numberOfLines" (Json.Encode.float val)
 
-enablesReturnKeyAutomatically :  -> Property
+enablesReturnKeyAutomatically : Bool -> Property
 enablesReturnKeyAutomatically val =
-  JsonProperty "enablesReturnKeyAutomatically" (Json.Encode. val)
+  JsonProperty "enablesReturnKeyAutomatically" (Json.Encode.bool val)
 
-multiline :  -> Property
+multiline : Bool -> Property
 multiline val =
-  JsonProperty "multiline" (Json.Encode. val)
+  JsonProperty "multiline" (Json.Encode.bool val)
 
-placeholder :  -> Property
+placeholder : String -> Property
 placeholder val =
-  JsonProperty "placeholder" (Json.Encode. val)
+  JsonProperty "placeholder" (Json.Encode.string val)
 
-placeholderTextColor :  -> Property
+placeholderTextColor : String -> Property
 placeholderTextColor val =
-  JsonProperty "placeholderTextColor" (Json.Encode. val)
+  JsonProperty "placeholderTextColor" (Json.Encode.string val)
 
-secureTextEntry :  -> Property
+secureTextEntry : Bool -> Property
 secureTextEntry val =
-  JsonProperty "secureTextEntry" (Json.Encode. val)
+  JsonProperty "secureTextEntry" (Json.Encode.bool val)
 
-selectionColor :  -> Property
+selectionColor : String -> Property
 selectionColor val =
-  JsonProperty "selectionColor" (Json.Encode. val)
+  JsonProperty "selectionColor" (Json.Encode.string val)
 
-value :  -> Property
+value : String -> Property
 value val =
-  JsonProperty "value" (Json.Encode. val)
+  JsonProperty "value" (Json.Encode.string val)
 
-defaultValue :  -> Property
+defaultValue : String -> Property
 defaultValue val =
-  JsonProperty "defaultValue" (Json.Encode. val)
+  JsonProperty "defaultValue" (Json.Encode.string val)
 
 type TextInputClearButtonMode
   = TextInputNever
@@ -169,18 +169,18 @@ TextInputClearButtonModeAlways -> "always"
   in
     JsonProperty "clearButtonMode" jsonValue
 
-clearTextOnFocus :  -> Property
+clearTextOnFocus : Bool -> Property
 clearTextOnFocus val =
-  JsonProperty "clearTextOnFocus" (Json.Encode. val)
+  JsonProperty "clearTextOnFocus" (Json.Encode.bool val)
 
-selectTextOnFocus :  -> Property
+selectTextOnFocus : Bool -> Property
 selectTextOnFocus val =
-  JsonProperty "selectTextOnFocus" (Json.Encode. val)
+  JsonProperty "selectTextOnFocus" (Json.Encode.bool val)
 
-blurOnSubmit :  -> Property
+blurOnSubmit : Bool -> Property
 blurOnSubmit val =
-  JsonProperty "blurOnSubmit" (Json.Encode. val)
+  JsonProperty "blurOnSubmit" (Json.Encode.bool val)
 
-underlineColorAndroid :  -> Property
+underlineColorAndroid : String -> Property
 underlineColorAndroid val =
-  JsonProperty "underlineColorAndroid" (Json.Encode. val)
+  JsonProperty "underlineColorAndroid" (Json.Encode.string val)

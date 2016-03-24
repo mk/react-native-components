@@ -1,4 +1,4 @@
 module TabBar where
-  translucent :  -> Property
+  translucent : Bool -> Property
 translucent val =
-  JsonProperty "translucent" (Json.Encode. val)
+  JsonProperty "translucent" (Json.Encode.bool val)

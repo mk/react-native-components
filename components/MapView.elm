@@ -1,35 +1,35 @@
 module MapView where
-  showsUserLocation :  -> Property
+  showsUserLocation : Bool -> Property
 showsUserLocation val =
-  JsonProperty "showsUserLocation" (Json.Encode. val)
+  JsonProperty "showsUserLocation" (Json.Encode.bool val)
 
-followUserLocation :  -> Property
+followUserLocation : Bool -> Property
 followUserLocation val =
-  JsonProperty "followUserLocation" (Json.Encode. val)
+  JsonProperty "followUserLocation" (Json.Encode.bool val)
 
-showsPointsOfInterest :  -> Property
+showsPointsOfInterest : Bool -> Property
 showsPointsOfInterest val =
-  JsonProperty "showsPointsOfInterest" (Json.Encode. val)
+  JsonProperty "showsPointsOfInterest" (Json.Encode.bool val)
 
-showsCompass :  -> Property
+showsCompass : Bool -> Property
 showsCompass val =
-  JsonProperty "showsCompass" (Json.Encode. val)
+  JsonProperty "showsCompass" (Json.Encode.bool val)
 
-zoomEnabled :  -> Property
+zoomEnabled : Bool -> Property
 zoomEnabled val =
-  JsonProperty "zoomEnabled" (Json.Encode. val)
+  JsonProperty "zoomEnabled" (Json.Encode.bool val)
 
-rotateEnabled :  -> Property
+rotateEnabled : Bool -> Property
 rotateEnabled val =
-  JsonProperty "rotateEnabled" (Json.Encode. val)
+  JsonProperty "rotateEnabled" (Json.Encode.bool val)
 
-pitchEnabled :  -> Property
+pitchEnabled : Bool -> Property
 pitchEnabled val =
-  JsonProperty "pitchEnabled" (Json.Encode. val)
+  JsonProperty "pitchEnabled" (Json.Encode.bool val)
 
-scrollEnabled :  -> Property
+scrollEnabled : Bool -> Property
 scrollEnabled val =
-  JsonProperty "scrollEnabled" (Json.Encode. val)
+  JsonProperty "scrollEnabled" (Json.Encode.bool val)
 
 type MapViewMapType
   = MapViewStandard
@@ -47,14 +47,14 @@ MapViewMapTypeHybrid -> "hybrid"
   in
     JsonProperty "mapType" jsonValue
 
-maxDelta :  -> Property
+maxDelta : Float -> Property
 maxDelta val =
-  JsonProperty "maxDelta" (Json.Encode. val)
+  JsonProperty "maxDelta" (Json.Encode.float val)
 
-minDelta :  -> Property
+minDelta : Float -> Property
 minDelta val =
-  JsonProperty "minDelta" (Json.Encode. val)
+  JsonProperty "minDelta" (Json.Encode.float val)
 
-active :  -> Property
+active : Bool -> Property
 active val =
-  JsonProperty "active" (Json.Encode. val)
+  JsonProperty "active" (Json.Encode.bool val)

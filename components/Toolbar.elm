@@ -1,24 +1,24 @@
 module Toolbar where
-  subtitle :  -> Property
+  subtitle : String -> Property
 subtitle val =
-  JsonProperty "subtitle" (Json.Encode. val)
+  JsonProperty "subtitle" (Json.Encode.string val)
 
-title :  -> Property
+title : String -> Property
 title val =
-  JsonProperty "title" (Json.Encode. val)
+  JsonProperty "title" (Json.Encode.string val)
 
-contentInsetStart :  -> Property
+contentInsetStart : Float -> Property
 contentInsetStart val =
-  JsonProperty "contentInsetStart" (Json.Encode. val)
+  JsonProperty "contentInsetStart" (Json.Encode.float val)
 
-contentInsetEnd :  -> Property
+contentInsetEnd : Float -> Property
 contentInsetEnd val =
-  JsonProperty "contentInsetEnd" (Json.Encode. val)
+  JsonProperty "contentInsetEnd" (Json.Encode.float val)
 
-rtl :  -> Property
+rtl : Bool -> Property
 rtl val =
-  JsonProperty "rtl" (Json.Encode. val)
+  JsonProperty "rtl" (Json.Encode.bool val)
 
-testID :  -> Property
+testID : String -> Property
 testID val =
-  JsonProperty "testID" (Json.Encode. val)
+  JsonProperty "testID" (Json.Encode.string val)

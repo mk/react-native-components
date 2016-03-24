@@ -1,16 +1,16 @@
 module SegmentedControl where
-  selectedIndex :  -> Property
+  selectedIndex : Float -> Property
 selectedIndex val =
-  JsonProperty "selectedIndex" (Json.Encode. val)
+  JsonProperty "selectedIndex" (Json.Encode.float val)
 
-enabled :  -> Property
+enabled : Bool -> Property
 enabled val =
-  JsonProperty "enabled" (Json.Encode. val)
+  JsonProperty "enabled" (Json.Encode.bool val)
 
-tintColor :  -> Property
+tintColor : String -> Property
 tintColor val =
-  JsonProperty "tintColor" (Json.Encode. val)
+  JsonProperty "tintColor" (Json.Encode.string val)
 
-momentary :  -> Property
+momentary : Bool -> Property
 momentary val =
-  JsonProperty "momentary" (Json.Encode. val)
+  JsonProperty "momentary" (Json.Encode.bool val)

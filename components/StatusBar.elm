@@ -1,15 +1,15 @@
 module StatusBar where
-  hidden :  -> Property
+  hidden : Bool -> Property
 hidden val =
-  JsonProperty "hidden" (Json.Encode. val)
+  JsonProperty "hidden" (Json.Encode.bool val)
 
-animated :  -> Property
+animated : Bool -> Property
 animated val =
-  JsonProperty "animated" (Json.Encode. val)
+  JsonProperty "animated" (Json.Encode.bool val)
 
-translucent :  -> Property
+translucent : Bool -> Property
 translucent val =
-  JsonProperty "translucent" (Json.Encode. val)
+  JsonProperty "translucent" (Json.Encode.bool val)
 
 type StatusBarBarStyle
   = StatusBarDefault
@@ -25,9 +25,9 @@ StatusBarBarStyleLight-content -> "light-content"
   in
     JsonProperty "barStyle" jsonValue
 
-networkActivityIndicatorVisible :  -> Property
+networkActivityIndicatorVisible : Bool -> Property
 networkActivityIndicatorVisible val =
-  JsonProperty "networkActivityIndicatorVisible" (Json.Encode. val)
+  JsonProperty "networkActivityIndicatorVisible" (Json.Encode.bool val)
 
 type StatusBarShowHideTransition
   = StatusBarFade

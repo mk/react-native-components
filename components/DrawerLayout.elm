@@ -27,9 +27,9 @@ DrawerLayoutDrawerPositionDrawerConsts.DrawerPosition.Right -> "DrawerConsts.Dra
   in
     JsonProperty "drawerPosition" jsonValue
 
-drawerWidth :  -> Property
+drawerWidth : Float -> Property
 drawerWidth val =
-  JsonProperty "drawerWidth" (Json.Encode. val)
+  JsonProperty "drawerWidth" (Json.Encode.float val)
 
 type DrawerLayoutDrawerLockMode
   = DrawerLayoutUnlocked

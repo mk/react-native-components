@@ -1,7 +1,7 @@
 module Picker where
-  enabled :  -> Property
+  enabled : Bool -> Property
 enabled val =
-  JsonProperty "enabled" (Json.Encode. val)
+  JsonProperty "enabled" (Json.Encode.bool val)
 
 type PickerMode
   = PickerDialog
@@ -17,10 +17,10 @@ PickerModeDropdown -> "dropdown"
   in
     JsonProperty "mode" jsonValue
 
-prompt :  -> Property
+prompt : String -> Property
 prompt val =
-  JsonProperty "prompt" (Json.Encode. val)
+  JsonProperty "prompt" (Json.Encode.string val)
 
-testID :  -> Property
+testID : String -> Property
 testID val =
-  JsonProperty "testID" (Json.Encode. val)
+  JsonProperty "testID" (Json.Encode.string val)

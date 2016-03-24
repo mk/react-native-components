@@ -99,7 +99,6 @@
         var propType = json.props[propName].type.name;
         if (allowedPropTypes.indexOf(propType) !== -1) {
           if (propType === "enum") {
-            console.log(json.props[propName].type.value);
             return ElmTransformer.enumProperty(
               propName,
               moduleName,
@@ -108,7 +107,7 @@
           } else {
             return ElmTransformer.property(
               propName,
-              propType
+              elmPropTypes[propType]
             );
           }
         }

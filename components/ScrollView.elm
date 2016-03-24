@@ -1,31 +1,31 @@
 module ScrollView where
-  automaticallyAdjustContentInsets :  -> Property
+  automaticallyAdjustContentInsets : Bool -> Property
 automaticallyAdjustContentInsets val =
-  JsonProperty "automaticallyAdjustContentInsets" (Json.Encode. val)
+  JsonProperty "automaticallyAdjustContentInsets" (Json.Encode.bool val)
 
-bounces :  -> Property
+bounces : Bool -> Property
 bounces val =
-  JsonProperty "bounces" (Json.Encode. val)
+  JsonProperty "bounces" (Json.Encode.bool val)
 
-bouncesZoom :  -> Property
+bouncesZoom : Bool -> Property
 bouncesZoom val =
-  JsonProperty "bouncesZoom" (Json.Encode. val)
+  JsonProperty "bouncesZoom" (Json.Encode.bool val)
 
-alwaysBounceHorizontal :  -> Property
+alwaysBounceHorizontal : Bool -> Property
 alwaysBounceHorizontal val =
-  JsonProperty "alwaysBounceHorizontal" (Json.Encode. val)
+  JsonProperty "alwaysBounceHorizontal" (Json.Encode.bool val)
 
-alwaysBounceVertical :  -> Property
+alwaysBounceVertical : Bool -> Property
 alwaysBounceVertical val =
-  JsonProperty "alwaysBounceVertical" (Json.Encode. val)
+  JsonProperty "alwaysBounceVertical" (Json.Encode.bool val)
 
-centerContent :  -> Property
+centerContent : Bool -> Property
 centerContent val =
-  JsonProperty "centerContent" (Json.Encode. val)
+  JsonProperty "centerContent" (Json.Encode.bool val)
 
-horizontal :  -> Property
+horizontal : Bool -> Property
 horizontal val =
-  JsonProperty "horizontal" (Json.Encode. val)
+  JsonProperty "horizontal" (Json.Encode.bool val)
 
 type ScrollViewIndicatorStyle
   = ScrollViewDefault
@@ -43,13 +43,13 @@ ScrollViewIndicatorStyleWhite -> "white"
   in
     JsonProperty "indicatorStyle" jsonValue
 
-directionalLockEnabled :  -> Property
+directionalLockEnabled : Bool -> Property
 directionalLockEnabled val =
-  JsonProperty "directionalLockEnabled" (Json.Encode. val)
+  JsonProperty "directionalLockEnabled" (Json.Encode.bool val)
 
-canCancelContentTouches :  -> Property
+canCancelContentTouches : Bool -> Property
 canCancelContentTouches val =
-  JsonProperty "canCancelContentTouches" (Json.Encode. val)
+  JsonProperty "canCancelContentTouches" (Json.Encode.bool val)
 
 type ScrollViewKeyboardDismissMode
   = ScrollViewNone
@@ -67,49 +67,49 @@ ScrollViewKeyboardDismissModeOn-drag -> "on-drag"
   in
     JsonProperty "keyboardDismissMode" jsonValue
 
-keyboardShouldPersistTaps :  -> Property
+keyboardShouldPersistTaps : Bool -> Property
 keyboardShouldPersistTaps val =
-  JsonProperty "keyboardShouldPersistTaps" (Json.Encode. val)
+  JsonProperty "keyboardShouldPersistTaps" (Json.Encode.bool val)
 
-maximumZoomScale :  -> Property
+maximumZoomScale : Float -> Property
 maximumZoomScale val =
-  JsonProperty "maximumZoomScale" (Json.Encode. val)
+  JsonProperty "maximumZoomScale" (Json.Encode.float val)
 
-minimumZoomScale :  -> Property
+minimumZoomScale : Float -> Property
 minimumZoomScale val =
-  JsonProperty "minimumZoomScale" (Json.Encode. val)
+  JsonProperty "minimumZoomScale" (Json.Encode.float val)
 
-pagingEnabled :  -> Property
+pagingEnabled : Bool -> Property
 pagingEnabled val =
-  JsonProperty "pagingEnabled" (Json.Encode. val)
+  JsonProperty "pagingEnabled" (Json.Encode.bool val)
 
-scrollEnabled :  -> Property
+scrollEnabled : Bool -> Property
 scrollEnabled val =
-  JsonProperty "scrollEnabled" (Json.Encode. val)
+  JsonProperty "scrollEnabled" (Json.Encode.bool val)
 
-scrollEventThrottle :  -> Property
+scrollEventThrottle : Float -> Property
 scrollEventThrottle val =
-  JsonProperty "scrollEventThrottle" (Json.Encode. val)
+  JsonProperty "scrollEventThrottle" (Json.Encode.float val)
 
-scrollsToTop :  -> Property
+scrollsToTop : Bool -> Property
 scrollsToTop val =
-  JsonProperty "scrollsToTop" (Json.Encode. val)
+  JsonProperty "scrollsToTop" (Json.Encode.bool val)
 
-sendMomentumEvents :  -> Property
+sendMomentumEvents : Bool -> Property
 sendMomentumEvents val =
-  JsonProperty "sendMomentumEvents" (Json.Encode. val)
+  JsonProperty "sendMomentumEvents" (Json.Encode.bool val)
 
-showsHorizontalScrollIndicator :  -> Property
+showsHorizontalScrollIndicator : Bool -> Property
 showsHorizontalScrollIndicator val =
-  JsonProperty "showsHorizontalScrollIndicator" (Json.Encode. val)
+  JsonProperty "showsHorizontalScrollIndicator" (Json.Encode.bool val)
 
-showsVerticalScrollIndicator :  -> Property
+showsVerticalScrollIndicator : Bool -> Property
 showsVerticalScrollIndicator val =
-  JsonProperty "showsVerticalScrollIndicator" (Json.Encode. val)
+  JsonProperty "showsVerticalScrollIndicator" (Json.Encode.bool val)
 
-snapToInterval :  -> Property
+snapToInterval : Float -> Property
 snapToInterval val =
-  JsonProperty "snapToInterval" (Json.Encode. val)
+  JsonProperty "snapToInterval" (Json.Encode.float val)
 
 type ScrollViewSnapToAlignment
   = ScrollViewStart
@@ -127,10 +127,10 @@ ScrollViewSnapToAlignmentEnd -> "end"
   in
     JsonProperty "snapToAlignment" jsonValue
 
-removeClippedSubviews :  -> Property
+removeClippedSubviews : Bool -> Property
 removeClippedSubviews val =
-  JsonProperty "removeClippedSubviews" (Json.Encode. val)
+  JsonProperty "removeClippedSubviews" (Json.Encode.bool val)
 
-zoomScale :  -> Property
+zoomScale : Float -> Property
 zoomScale val =
-  JsonProperty "zoomScale" (Json.Encode. val)
+  JsonProperty "zoomScale" (Json.Encode.float val)

@@ -1,8 +1,8 @@
 module Switch where
-  value :  -> Property
+  value : Bool -> Property
 value val =
-  JsonProperty "value" (Json.Encode. val)
+  JsonProperty "value" (Json.Encode.bool val)
 
-disabled :  -> Property
+disabled : Bool -> Property
 disabled val =
-  JsonProperty "disabled" (Json.Encode. val)
+  JsonProperty "disabled" (Json.Encode.bool val)

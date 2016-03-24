@@ -13,14 +13,14 @@ ProgressViewProgressViewStyleBar -> "bar"
   in
     JsonProperty "progressViewStyle" jsonValue
 
-progress :  -> Property
+progress : Float -> Property
 progress val =
-  JsonProperty "progress" (Json.Encode. val)
+  JsonProperty "progress" (Json.Encode.float val)
 
-progressTintColor :  -> Property
+progressTintColor : String -> Property
 progressTintColor val =
-  JsonProperty "progressTintColor" (Json.Encode. val)
+  JsonProperty "progressTintColor" (Json.Encode.string val)
 
-trackTintColor :  -> Property
+trackTintColor : String -> Property
 trackTintColor val =
-  JsonProperty "trackTintColor" (Json.Encode. val)
+  JsonProperty "trackTintColor" (Json.Encode.string val)
