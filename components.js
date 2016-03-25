@@ -75,62 +75,65 @@ function generateElm(moduleJson) {
     "number": { type: "Float", encoder: "float" }
   };
   var elements = {};
-  var handlers = {};
-  var properties = {};
+  var modules = {};
 
   _(moduleJson).each(function(module, moduleName) {
     let propNames = Object.keys(module.props);
+    modules[moduleName] = {};
 
     let elementFuncName = decapitalize(moduleName);
     elements[elementFuncName] = elmTransformer.element(moduleName, elementFuncName);
+
     propNames.forEach(function(propName) {
       if (module.props[propName].type) { // Ignore props without type for now
         let propType = module.props[propName].type.name;
 
         if (allowedPropTypes.indexOf(propType) !== -1) {
           if (propType === "enum") {
-            if (!properties[propName]) {
-              let values = module.props[propName].type.value;
-              if (_.isArray(values)) { // Ignore non-Array enums for now
-                properties[propName] =  elmTransformer.enumProperty(
-                  propName,
-                  moduleName,
-                  enumValues(module.props[propName].type.value)
-                );
-              }
+            let values = module.props[propName].type.value;
+            if (_.isArray(values)) { // Ignore non-Array enums for now
+              modules[moduleName][propName] = elmTransformer.enumProperty(
+                propName,
+                moduleName,
+                enumValues(module.props[propName].type.value)
+              );
             }
           } else if (propType === "func") {
-            if (!handlers[propName]) {
-              handlers[propName] = elmTransformer.funcProperty(
-                propName,
-                funcPropertyArgs[propName]
-              );
-            }
+            modules[moduleName][propName] = elmTransformer.funcProperty(
+              propName,
+              funcPropertyArgs[propName]
+            );
           } else {
-            if (!properties[propName]) {
-              properties[propName] = elmTransformer.property(
-                propName,
-                elmPropTypes[propType]
-              );
-            }
+            modules[moduleName][propName] = elmTransformer.property(
+              propName,
+              elmPropTypes[propType]
+            );
           }
         }
       }
     });
+    generateElmModuleFile(moduleName, modules[moduleName]);
   });
-  generateElmModuleFile("Properties.elm", "properties-module.ejs", properties);
-  generateElmModuleFile("Handlers.elm", "handlers-module.ejs", handlers);
-  generateElmModuleFile("Elements.elm", "elements-module.ejs", elements);
+  generateElmElementsModuleFile(elements, modules);
 }
 
-function generateElmModuleFile(fileName, templateFile, content) {
+function generateElmModuleFile(moduleName, content) {
   let moduleContent = elmTransformer.module(
-    templateFile,
+    moduleName,
     _.values(content).join("\n\n"),
     Object.keys(content).join(", ")
   );
   fs.writeFileSync(
-    elmModulesDir + fileName,
+    elmModulesDir + moduleName + ".elm",
+    moduleContent,
+    "utf8"
+  );
+}
+
+function generateElmElementsModuleFile(elements, content) {
+  let moduleContent = elmTransformer.elementsModule(elements, content);
+  fs.writeFileSync(
+    elmModulesDir + "Elements.elm",
     moduleContent,
     "utf8"
   );

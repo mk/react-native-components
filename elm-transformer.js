@@ -12,19 +12,45 @@ class ElmTransformer {
     this.enumPropertyTemplate = fs.readFileSync("templates/enum-property.ejs", 'utf8');
     this.funcPropertyTemplate = fs.readFileSync("templates/func-property.ejs", 'utf8');
     this.elementTemplate = fs.readFileSync("templates/element.ejs", 'utf8');
+    this.moduleTemplate = fs.readFileSync("templates/module.ejs", 'utf8');
+    this.elementsModuleTemplate = fs.readFileSync("templates/elements-module.ejs", 'utf8');
   }
 
-  module(templateFile, content, moduleExports) {
-    var template = fs.readFileSync("templates/" + templateFile, 'utf8');
-    return ejs.render(template, { content: content, moduleExports: moduleExports });
+  module(moduleName, content, moduleExports) {
+    return ejs.render(this.moduleTemplate, {
+      moduleName: moduleName,
+      content: content,
+      moduleExports: moduleExports
+    });
+  }
+
+  elementsModule(elements, modules) {
+    var moduleExports = Object.keys(elements);
+    var moduleNames = Object.keys(modules);
+    moduleExports = moduleExports.concat(moduleNames);
+    var moduleImports = moduleNames.map(function(moduleName) {
+      return "import " + moduleName;
+    });
+
+    return ejs.render(this.elementsModuleTemplate, {
+      content: _.values(elements).join("\n\n"),
+      moduleExports: moduleExports.join(", "),
+      moduleImports: moduleImports.join("\n")
+    });
   }
 
   element(elementName, elementFuncName) {
-    return ejs.render(this.elementTemplate, { elementName: elementName, elementFuncName: elementFuncName });
+    return ejs.render(this.elementTemplate, {
+      elementName: elementName,
+      elementFuncName: elementFuncName
+    });
   }
 
   property(propName, propType) {
-    return ejs.render(this.propertyTemplate, { propName: propName, propType: propType });
+    return ejs.render(this.propertyTemplate, {
+      propName: propName,
+      propType: propType
+    });
   }
 
   enumProperty(propName, moduleName, values) {

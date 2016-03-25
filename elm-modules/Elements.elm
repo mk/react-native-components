@@ -1,6 +1,22 @@
-module NativeUi.Elements (activityIndicator, mapView, picker, progressBar, progressView, refreshControl, scrollView, segmentedControl, slider, statusBar, switch, tabBar, text, textInput, toolbar, view) where
+module NativeUi.Elements (activityIndicator, mapView, picker, progressBar, progressView, refreshControl, scrollView, segmentedControl, slider, statusBar, switch, tabBar, text, textInput, toolbar, view, ActivityIndicator, MapView, Picker, ProgressBar, ProgressView, RefreshControl, ScrollView, SegmentedControl, Slider, StatusBar, Switch, TabBar, Text, TextInput, Toolbar, View) where
 
 import NativeUi exposing (Property, NativeUi)
+import ActivityIndicator
+import MapView
+import Picker
+import ProgressBar
+import ProgressView
+import RefreshControl
+import ScrollView
+import SegmentedControl
+import Slider
+import StatusBar
+import Switch
+import TabBar
+import Text
+import TextInput
+import Toolbar
+import View
 
 
 activityIndicator : List Property -> List NativeUi -> NativeUi
