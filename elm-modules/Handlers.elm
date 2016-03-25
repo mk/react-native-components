@@ -1,6 +1,7 @@
 module NativeUi.Handlers (onLayout, onRegionChange, onRegionChangeComplete, onAnnotationPress, onValueChange, onRefresh, onScroll, onScrollAnimationEnd, onContentSizeChange, onChange, onSlidingComplete, onPress, onBlur, onFocus, onChangeText, onEndEditing, onSelectionChange, onSubmitEditing, onKeyPress, onActionSelected, onIconClicked, onAccessibilityTap, onMagicTap, onResponderGrant, onResponderMove, onResponderReject, onResponderRelease, onResponderTerminate, onResponderTerminationRequest, onStartShouldSetResponder, onStartShouldSetResponderCapture, onMoveShouldSetResponder, onMoveShouldSetResponderCapture) where
 
-import Json.Encode
+import Json.Decode
+import NativeUi exposing (Property, on)
 
 
 onLayout : Signal.Address a -> a -> Property

@@ -1,6 +1,6 @@
 module NativeUi.Elements (activityIndicator, mapView, picker, progressBar, progressView, refreshControl, scrollView, segmentedControl, slider, statusBar, switch, tabBar, text, textInput, toolbar, view) where
 
-import Json.Encode
+import NativeUi exposing (Property, NativeUi)
 
 
 activityIndicator : List Property -> List NativeUi -> NativeUi
